@@ -32,7 +32,7 @@ export class AddSteam extends React.Component {
               X
             </a>
             <Input data={SteamId} infoname="Insert your SteamID:" func={this.handlechange} />
-            <button class="button is-primary">Submit</button>
+            <button className="button is-primary">Submit</button>
           </div>
         </div>
       </StyledModal>

@@ -6,9 +6,11 @@ import { StyledNav } from "../lib/styledcomps/styledNav";
 
 const toggle = () => {
   const nav = document.querySelector("nav");
-  const bar=document.querySelector(".bar")
+  const bar = document.querySelector(".bar");
   nav.className ? (nav.className = "") : (nav.className = "onoff");
-  bar.className ==="bar" ? bar.className="bar onoff":bar.className="bar"
+  bar.className === "bar"
+    ? (bar.className = "bar onoff")
+    : (bar.className = "bar");
 };
 
 const _Nav = ({ user, dispatch }) => {
@@ -16,11 +18,11 @@ const _Nav = ({ user, dispatch }) => {
     <StyledNav>
       <div id="toggle" onClick={() => toggle()}>
         <div className="hamburger-menu">
-          <div className="bar"/>
+          <div className="bar" />
         </div>
       </div>
 
-      <nav role="navigation" className="onoff" onClick={()=>toggle()}>
+      <nav role="navigation" className="onoff" onClick={() => toggle()}>
         <ul>
           {user ? (
             <React.Fragment>
@@ -31,7 +33,7 @@ const _Nav = ({ user, dispatch }) => {
               </li>
               <li>
                 Events <i className="fa fa-music" />
-                <ul >
+                <ul>
                   <li>
                     <Link to="/newevent">new event</Link>
                   </li>
@@ -39,22 +41,23 @@ const _Nav = ({ user, dispatch }) => {
               </li>
               <li>
                 Groups <i className="fa fa-heartbeat" />
-                <ul>
-            
-                </ul>
+                <ul />
               </li>
               <li>
-              Account <i className="fa fa-heartbeat" />
-              <ul>
-                <li>
-                <Link to="/" className="backgroundred" onClick={() =>
-               AuthAPI.logout().then(e => dispatch({ type: "LOGOUT" }))
-             }>
-                  logout <i className="fa fa-home" />
-                </Link>
-                </li>
-              </ul>
-              
+                Account <i className="fa fa-heartbeat" />
+                <ul>
+                  <li>
+                    <Link
+                      to="/"
+                      className="backgroundred"
+                      onClick={() =>
+                        AuthAPI.logout().then(e => dispatch({ type: "LOGOUT" }))
+                      }
+                    >
+                      logout <i className="fa fa-home" />
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </React.Fragment>
           ) : (
@@ -78,4 +81,3 @@ const _Nav = ({ user, dispatch }) => {
 };
 
 export const Nav = connect(store => ({ user: store.user }))(_Nav);
-

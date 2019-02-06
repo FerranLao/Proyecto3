@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const SteamUserSchema = new Schema(
   {
-    OwnedGames: { type: [Schema.Types.ObjectId], ref: "SteamGames" },
+    OwnedGames: [{ type: Schema.Types.ObjectId, ref: "SteamGames" }],
     profile: Object
   },
   {

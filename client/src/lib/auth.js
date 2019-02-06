@@ -45,4 +45,8 @@ export class AuthAPI {
       .then(res => res.data.user)
       .catch(AuthAPI.errorHandler);
   }
+
+  static AddSteamId(id){
+    return instance.post("/auth/SteamId",{id}).then(e=>console.log(e))
+  }
 }

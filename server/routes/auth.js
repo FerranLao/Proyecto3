@@ -19,10 +19,10 @@ let loginPromise = (req, user) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
     if (err) return res.status(500).json({ message: "Something went wrong" });
-    if (!theUser) return res.status(401).json(failureDetails);
+    if (!theUser) return res.json(failureDetails);
     loginPromise(req, theUser)
-      .then(() => res.status(200).json(req.user))
-      .catch(e => res.status(500).json({ message: e.message }));
+      .then(() => res.json(req.user))
+      .catch(e => res.json({ message: e.message }));
   })(req, res, next);
 });
 
@@ -50,42 +50,17 @@ router.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    if (SteamId == "") {
-      User.create({
-        username,
-        password: hashPass,
-        SteamUser: { OwnedGames: [], profile: {} },
-        image
+    User.create({
+      username,
+      password: hashPass,
+      image
+    })
+      .then(user => {
+        res.json({ user });
       })
-        .then(user => {
-          res.json({ user });
-        })
-        .catch(err => {
-          res.json({ message: "Something went wrong" });
-        });
-    } else {
-      Steam.getUser(SteamId)
-        .then(e => {
-          const profile = e.data.response.players[0];
-          Steam.getOwned(SteamId).then(e => {
-            const list = e.data.response.games.map(e => e.appid);
-            SteamGames.find({ steam_appid: list }).then(e => {
-              const OwnedGames = e.map(e => e._id);
-              User.create({
-                username,
-                password: hashPass,
-                SteamUser: { OwnedGames, profile },
-                image
-              })
-                .then(user => {
-                  req.user=user
-                  res.json(user)})
-                .catch(e => res.json({ message: "Something went wrong" }));
-            });
-          });
-        })
-        .catch(e => res.json({ message: "invalid steam id" }));
-    }
+      .catch(err => {
+        res.json({ message: "Something went wrong" });
+      });
   });
 });
 
@@ -102,4 +77,10 @@ router.get("/currentuser", (req, res) => {
     res.json({ user: null });
   }
 });
+
+
+router.post("/SteamId",(req,res,next)=>{
+  console.log(req.body)
+  console.log(req.user)
+})
 module.exports = router;

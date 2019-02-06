@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Usercard = ({ user }) => {
-  const { username, image, SteamUser } = user;
+  const { username, image } = user;
   return (
     <div className="card">
       <div className="card-content">
@@ -13,12 +13,7 @@ export const Usercard = ({ user }) => {
           </div>
           <div className="media-content">
             <p className="title is-4">{username}</p>
-            <p className="subtitle is-6">
-              {SteamUser.profile.personaname}
-            </p>
-            <ul>
-              {SteamUser.OwnedGames.map((e,i)=><li key={i}>{e}</li>)}
-            </ul>
+           
           </div>
         </div>
       </div>

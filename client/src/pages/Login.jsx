@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 export class Loginform extends React.Component {
   constructor() {
     super();
-    this.state = { info: { username: "", password: "" } };
+    this.state = { info: { username: "", password: "" }, error: "" };
   }
 
   handleChange = (e, infoname) => {
@@ -18,7 +18,12 @@ export class Loginform extends React.Component {
   submit = () => {
     const { history, dispatch } = this.props;
     const { username, password } = this.state.info;
-    AuthAPI.login(username, password).then(({data}) => {
+    AuthAPI.login(username, password).then(({ data }) => {
+      if (data.message) {
+        this.setState({ error: data.message });
+        return;
+      }
+
       dispatch({
         type: "LOGIN",
         user: data
@@ -28,7 +33,8 @@ export class Loginform extends React.Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password } = this.state.info;
+    const { error } = this.state;
     return (
       <div className="container">
         <Input data={username} infoname="username" func={this.handleChange} />
@@ -41,9 +47,19 @@ export class Loginform extends React.Component {
         <button onClick={() => this.submit()} className="button is-primary">
           Login
         </button>
+        {error ? (
+          <section className="hero is-warning">
+            <div className="hero-body">
+              <div className="container">
+                <h1 className="title">Error</h1>
+                <h2 className="subtitle">{error}</h2>
+              </div>
+            </div>
+          </section>
+        ) : null}
       </div>
     );
   }
 }
 
-export const Login = connect()(withRouter(Loginform));
+export const Login = connect(store=>({user:store.user}))(withRouter(Loginform));

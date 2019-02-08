@@ -1,8 +1,10 @@
 .App{
-  background: #393939;
   height:100vh;
+  background-color: #262625;
 }
-
+body{
+  background-color: #262625;
+}
 .content{
   padding-top:10vh;
 

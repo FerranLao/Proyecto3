@@ -1,32 +1,13 @@
 import styled from "@emotion/styled";
 
 export const StyledResults = styled.div`
+height:80vh;
+overflow:scroll;
   @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
-  html {
-    box-sizing: border-box;
-  }
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-  }
-
-  body {
-    background-color: #dce1e5;
+    
     font-family: "Montserrat", helvetica, arial, sans-serif;
-    font-size: 14px;
-    color: #cfd6e1;
-    line-height: 1.5;
-    font-weight: 400;
-    overflow-x: hidden;
-  }
+
 
   * {
     transition: 0.4s;
@@ -51,7 +32,7 @@ export const StyledResults = styled.div`
     width: 100%;
     max-width: 800px;
     height: 100%;
-    min-height: 300px;
+    min-height: 200px;
     display: block;
     margin: 8vh auto;
     border-radius: 8px;
@@ -71,15 +52,12 @@ export const StyledResults = styled.div`
       height: 400px;
     }
   }
-  .movie-card[data-movie="Blade Runner"] {
-    background-image: url(http://digitalspyuk.cdnds.net/15/47/1600x800/landscape-1447754794-harrison-ford-blade-runner.jpg);
-  }
-  .movie-card[data-movie="Back to the Future"] {
-    background-image: url("http://www.blastr.com/sites/blastr/files/back-to-the-future-part-ii-original.jpg");
-  }
-  .movie-card[data-movie="Akira"] {
-    background-image: url("http://www.dvdactive.com/images/reviews/screenshot/2011/5/akirabdcap8_original.jpg");
-  }
+
+  ${props=>props.image.map((e,i)=>`.index${i}{
+    background-image: url(${e})
+  }`)}
+
+
   .movie-card__overlay {
     width: 100%;
     height: 100%;
@@ -168,6 +146,8 @@ export const StyledResults = styled.div`
     color: #ffffff;
     margin-bottom: 0.25em;
     opacity: 0.75;
+    height:70px;
+    overflow:hidden;
   }
   .movie-card__info {
     text-transform: uppercase;
@@ -207,8 +187,7 @@ export const StyledResults = styled.div`
   }
 
   .btn::before {
-    font-family: "Material Icons";
-    content: "\e037";
+   
     vertical-align: middle;
     font-size: 1.5em;
     padding-right: 0.5em;

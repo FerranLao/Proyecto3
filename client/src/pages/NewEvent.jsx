@@ -4,19 +4,26 @@ import { AddSteam } from "../components/AddSteam";
 import { Games } from "../lib/Games";
 import { Input } from "../components/Input";
 import { Resultbox } from "../components/Resultbox";
+import _ from "lodash";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 class _NewEvent extends React.Component {
   constructor() {
     super();
     this.state = {
       allgames: [],
-      filtergames: [],
+      gamepages: [],
+      page: 0,
       filter: ""
     };
   }
   componentDidMount() {
     Games.getall().then(({ data }) => {
-      this.setState({ allgames: data.games, filtergames: data.games });
+      this.setState({
+        allgames: data.games,
+        filtergames: data.games,
+        gamepages: _.chunk(data.games, 10)
+      });
     });
   }
   filter = ({ target }) => {
@@ -25,16 +32,20 @@ class _NewEvent extends React.Component {
     const filtered = allgames.filter(e =>
       e.name.toUpperCase().includes(target.value.toUpperCase())
     );
-    this.setState({ filter: target.value, filtergames: filtered });
+    this.setState({ filter: target.value, gamepages: _.chunk(filtered, 10) });
   };
   render() {
     const { user } = this.props;
-    const { filtergames } = this.state;
+    const { gamepages, page } = this.state;
     return (
       <div>
         {user.SteamUser ? null : <AddSteam />}
         <Input func={this.filter} />
-        <Resultbox></Resultbox>
+        {gamepages[page] ? (
+          <Resultbox gamearray={gamepages[page]} />
+        ) : (
+          <LoadingScreen />
+        )}
       </div>
     );
   }

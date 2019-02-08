@@ -32,6 +32,7 @@ const app = express();
 
 const whitelist = [
   'http://localhost:3001',
+  'http://localhost:3002'
 ];
 const corsOptions = {
   origin: function(origin, callback){

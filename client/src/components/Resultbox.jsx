@@ -4,9 +4,11 @@ import { GameCard } from "./GameCard";
 
 export const Resultbox = ({gamearray}) => {
   return (
-    <StyledResults>
+    <StyledResults image={gamearray.map(e=>e.header_image)}>
       <div id="movie-card-list">
-        <GameCard />
+       {
+         gamearray.map((e,i)=><GameCard index={i} key={e._id} game={e}/>)
+       } 
       </div>
     </StyledResults>
   );

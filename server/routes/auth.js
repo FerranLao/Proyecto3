@@ -3,7 +3,8 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const SteamGames = require("../models/SteamGames");
-
+const SteamUser = require("../models/SteamUser");
+const CircularJSON = require("circular-json");
 const Steam = require("../Steam/Apihandler");
 const uploadCloud = require("../multer/cloudinary.js");
 
@@ -78,9 +79,29 @@ router.get("/currentuser", (req, res) => {
   }
 });
 
+router.post("/SteamId", (req, res) => {
+  const { id } = req.body;
+  Steam.getUser(id)
+    .then(e => {
+      const profile = e.data.response.players[0];
+      Steam.getOwned(id).then(({ data }) => {
+        const gameids = data.response.games.map(e => e.appid);
+        SteamGames.find({ steam_appid: gameids }).then(gamelist => {
+          const OwnedGames = gamelist.map(e => e._id);
+          SteamUser.create({ profile, OwnedGames }).then(({ _id }) => {
+            User.findByIdAndUpdate(
+              req.user._id,
+              { SteamUser: _id },
+              { new: true }
+            ).then(user => {
+              req.user = user;
+              res.json(user);
+            });
+          });
+        });
+      });
+    })
+    .catch(e => res.json({ message: "Unvalid ID" }));
+});
 
-router.post("/SteamId",(req,res,next)=>{
-  console.log(req.body)
-  console.log(req.user)
-})
 module.exports = router;

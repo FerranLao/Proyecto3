@@ -11,42 +11,8 @@ body {
   width: 100%;
   background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/grid.png) repeat #fefefe;
 }
-.buttonmodal {
-  margin: 40px auto;
-  font-size: 30px;
-  font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
-  text-decoration: none;
-  text-shadow: 1px 1px 0px #fff;
-  font-weight: 400;
-  color: #666;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  padding: 20px 70px 30px;
-  position: relative;
-  top: 50px;
-  background: #eee;
-  width: 300px;
-  display: block;
-  text-align: center;
-  box-shadow: 1px 1px 1px #fff;
-  -moz-box-shadow: 1px 1px 1px #fff;
-  -webkit-box-shadow: 1px 1px 1px #fff;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -moz-transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-}
-.buttonmodal:hover {
-  color: #333;
-  background: #eeffff;
-  -moz-transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  transition: all 0.5s ease-out;
-}
+
+
 .modalbg {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;

@@ -14,7 +14,7 @@ const storage = cloudinaryStorage({
   allowedFormats: ["jpg", "png"],
   filename: function(req, file, cb) {
     console.log(file);
-    cb(undefined, "my-file-name");
+    cb(undefined, `${Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)}`);
   }
 });
 

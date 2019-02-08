@@ -8,10 +8,13 @@ export const rootReducer = (store = initialStore, action) => {
       store = { ...store, user: action.user.data.user };
       break;
     case "LOGIN":
-      store = { ...store, user: action.user};
+      store = { ...store, user: action.user };
       break;
     case "LOGOUT":
       store = { ...store, user: null };
+      break;
+    case "UPDATE":
+      store = { ...store, user: action.user };
       break;
     default:
       return store;

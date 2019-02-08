@@ -110,6 +110,7 @@ export const StyledNav = styled.div`
     text-align: center;
     line-height: 15vh;
     color: #fff;
+    visibility: hidden;
   }
 
   .hamburger-menu {
@@ -185,6 +186,7 @@ export const StyledNav = styled.div`
       height: 60px;
       background: #444;
       z-index: 2;
+      visibility:visible
     }
     nav {
       top: 60px;

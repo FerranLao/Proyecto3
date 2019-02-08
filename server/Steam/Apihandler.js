@@ -10,6 +10,7 @@ module.exports= class Steam {
       )
       .then(e => e);
   }
+  
 
   static getOwned(id){
       return axios

@@ -5,12 +5,13 @@ import { AddSteam } from "../components/AddSteam";
 class _NewEvent extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      Steamgames:{}
+    };
   }
 
   render() {
     const { user } = this.props;
-    console.log(user);
     return (
       <div>
         {user.SteamUser ? null : (

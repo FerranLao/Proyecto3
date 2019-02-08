@@ -52,7 +52,6 @@ class SignupForm extends React.Component {
   render() {
     const { username, password } = this.state.info;
     const { error } = this.state;
-    console.log("eioiasjd")
     return (
       <div className="container">
         <Input data={username} infoname="username" func={this.handleChange} />

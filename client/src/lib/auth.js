@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   baseURL: "http://localhost:3000",
-  timeout: 2000,
+  timeout: 3000,
   withCredentials: true
 });
 export class AuthAPI {
@@ -47,6 +47,6 @@ export class AuthAPI {
   }
 
   static AddSteamId(id){
-    return instance.post("/auth/SteamId",{id}).then(e=>console.log(e))
+    return instance.post("/auth/SteamId",{id}).then(e=>e)
   }
 }

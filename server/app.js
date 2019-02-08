@@ -95,6 +95,10 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const games = require('./routes/games');
+app.use('/games', games);
+
       
 
 module.exports = app;

@@ -4,7 +4,7 @@ import { AddSteam } from "../components/AddSteam";
 import { Games } from "../lib/Games";
 import { Input } from "../components/Input";
 import { Resultbox } from "../components/Resultbox";
-import _ from "lodash";
+//import _ from "lodash";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { Pagination } from "../components/Pagination";
 
@@ -12,43 +12,48 @@ class _NewEvent extends React.Component {
   constructor() {
     super();
     this.state = {
-      allgames: [],
-      gamepages: [],
+      games: [],
       page: 0,
-      filter: ""
+      filter: "",
+      count: 0
     };
   }
   componentDidMount() {
-    Games.getall().then(({ data }) => {
-      this.setState({
-        allgames: data.games,
-        filtergames: data.games,
-        gamepages: _.chunk(data.games, 10)
-      });
+    const { page, filter } = this.state;
+    Games.getpage(filter, page).then(({ data }) => {
+      const { games, count } = data;
+      this.setState({ games, count });
     });
   }
   filter = ({ target }) => {
-    const { allgames } = this.state;
-    const filtered = allgames.filter(e =>
-      e.name.toUpperCase().includes(target.value.toUpperCase())
-    );
-    this.setState({ filter: target.value, gamepages: _.chunk(filtered, 10) });
+    Games.getpage(target.value, 0).then(({ data }) => {
+      const { games, count } = data;
+      this.setState({ games, count, page: 0 });
+    });
   };
-  gotopage= (page)=>{
-    this.setState({page})
-  }
+  gotopage = page => {
+    const { filter } = this.state;
+    Games.getpage(filter, page).then(({ data }) => {
+      const { games, count } = data;
+      this.setState({ games, count, page });
+    });
+  };
   render() {
     const { user } = this.props;
-    const { gamepages, page } = this.state;
+    const { games, page, count } = this.state;
     return (
       <div>
         {user.SteamUser ? null : <AddSteam />}
         <Input func={this.filter} />
-        {gamepages[page] ? (<React.Fragment>
-          <Resultbox gamearray={gamepages[page]} />
-          <Pagination func={this.gotopage}pages={gamepages} actual={page+1}></Pagination>
-        </React.Fragment>
-         
+        {games ? (
+          <React.Fragment>
+            <Resultbox gamearray={games} />
+            <Pagination
+              func={this.gotopage}
+              pages={Math.ceil(count / 10)}
+              actual={page + 1}
+            />
+          </React.Fragment>
         ) : (
           <LoadingScreen />
         )}

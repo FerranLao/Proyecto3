@@ -9,6 +9,7 @@ import { Home } from "./pages/Home";
 import { NewEvent } from "./pages/NewEvent";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
+import { NewEventgame } from "./pages/NewEventgame";
 
 class _App extends Component {
   render() {
@@ -21,12 +22,14 @@ class _App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/newevent" component={NewEvent} />
+              <Route exact path="/newevent/:id"component={NewEventgame}/>
             </Switch>
           ) : (
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/login" render={()=><Login></Login>} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+           
             </Switch>
           )}
         </div>

@@ -1,8 +1,7 @@
 import React from "react";
 
 export const Pagination = ({ pages, actual, func }) => {
-  console.log(actual);
-  console.log(pages.length);
+  const arr = new Array(pages);
   return (
     <nav
       className="pagination is-centered"
@@ -17,12 +16,14 @@ export const Pagination = ({ pages, actual, func }) => {
           Previous
         </button>
       ) : null}
-     {actual!==pages.length ?<button className="pagination-next" onClick={() => func(actual)}>
-        Next page
-      </button>:null}
+      {actual !== pages ? (
+        <button className="pagination-next" onClick={() => func(actual)}>
+          Next page
+        </button>
+      ) : null}
       <ul className="pagination-list">
-        {pages.length < 10 ? (
-          pages.map((e, i) => {
+        {pages < 10 ? (
+          arr.map((e, i) => {
             return (
               <li>
                 <button
@@ -73,9 +74,9 @@ export const Pagination = ({ pages, actual, func }) => {
             <li>
               <button className="pagination-link is-current">{actual}</button>
             </li>
-            {actual !== pages.length - 2 ? (
+            {actual !== pages - 2 ? (
               <React.Fragment>
-                {actual < pages.length - 2 ? (
+                {actual < pages - 2 ? (
                   <li>
                     <button
                       onClick={() => func(actual + 1)}
@@ -85,7 +86,7 @@ export const Pagination = ({ pages, actual, func }) => {
                     </button>
                   </li>
                 ) : null}
-                {actual < pages.length - 10 ? (
+                {actual < pages - 10 ? (
                   <li>
                     <span
                       onClick={() => func(actual + 10)}
@@ -95,13 +96,13 @@ export const Pagination = ({ pages, actual, func }) => {
                     </span>
                   </li>
                 ) : null}
-                {actual < pages.length - 3 ? (
+                {actual < pages - 3 ? (
                   <li>
                     <button
                       className="pagination-link"
-                      onClick={() => func(pages.length - 1)}
+                      onClick={() => func(pages - 1)}
                     >
-                      {pages.length}
+                      {pages}
                     </button>
                   </li>
                 ) : null}

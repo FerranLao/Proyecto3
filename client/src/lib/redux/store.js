@@ -1,6 +1,7 @@
 import { createStore } from "redux";
 import { rootReducer } from "./reducer";
 import { AuthAPI } from "../auth";
+import { WebsocketConnection } from "../Websocket";
 
 export const store = createStore(
   rootReducer,
@@ -10,3 +11,5 @@ export const store = createStore(
 AuthAPI.currentUser().then(user =>
   user ? store.dispatch({ type: "LOGIN", user }) : null
 );
+
+export const wsConn = new WebsocketConnection(store);

@@ -25,4 +25,9 @@ router.post("/getpage", (req, res, next) => {
     .catch(e => res.json({ message: "Something went wrong" }));
 });
 
+router.post("/getbyId",(req,res,next)=>{
+  const {id}=req.body
+  SteamGames.findById(id).then(e=>{res.json(e)})
+})
+
 module.exports = router;

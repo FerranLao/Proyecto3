@@ -101,4 +101,7 @@ app.use("/auth", authRoutes);
 const games = require("./routes/games");
 app.use("/games", games);
 
+const events = require("./routes/events")
+app.use("/events", events);
+
 module.exports = app;

@@ -3,13 +3,18 @@ const Schema = mongoose.Schema;
 
 const EventsSchema = new Schema(
   {
-    name:{type:String,required:true},
-    creator:{ type: Schema.Types.ObjectId , ref: "User",required:true},
-    party:[{ type: Schema.Types.ObjectId, ref: "User",default:[this.creator] }],
-    game:{type:Schema.Types.ObjectId,ref:"SteamGames", required:true},
-    chat:{type:Schema.Types.ObjectId, ref:"Chat"},
-    Schedule:{ type: Date, default: Date.now },
-    private:{type:Boolean,default:false}
+    name: { type: String, required: true },
+    creator: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    party: [
+      { type: Schema.Types.ObjectId, ref: "User", default: [this.creator] }
+    ],
+    size: Number,
+    isFull: { type: Boolean, default: false },
+    description: { type: String, default: "No description provided" },
+    game: { type: Schema.Types.ObjectId, ref: "SteamGames", required: true },
+    chat: { type: Schema.Types.ObjectId, ref: "Chat" },
+    Schedule: { type: Date, default: Date.now },
+    private: { type: Boolean, default: false }
   },
   {
     timestamps: {

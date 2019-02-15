@@ -2,18 +2,21 @@ import styled from "@emotion/styled";
 
 export const StyledEventCard = styled.div`
   display: flex;
-
   height: 90vh;
   .card {
     width: 50%;
     color: lightgrey;
     background: none;
     card-image {
-      height: 35vh;
+      height: 37vh;
     }
   }
   .eventform {
+    height:80%;
     width: 45%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
   }
   .content {
     padding-top: 10px;

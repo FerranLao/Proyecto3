@@ -10,4 +10,13 @@ export class Events{
     static newEvent (event){
        return instance.post("/new",event).then(e=>e)
     }
+    static getEvent(id){
+        return instance.post("/getevent",{id}).then(e=>e)
+    }
+    static getpage(filter,page){
+        return instance.post("/getpage",{filter,page}).then(e=>e)
+    }
+    static join(id){
+        return instance.post("/joinparty",{id}).then(e=>e)
+    }
 }

@@ -35,7 +35,10 @@ const _Nav = ({ user, dispatch }) => {
                 Events <i className="fa fa-music" />
                 <ul>
                   <li>
-                    <Link to="/newevent">new event</Link>
+                    <Link to="/events">Search events</Link>
+                  </li>
+                  <li>
+                    <Link to="/newevent">New event</Link>
                   </li>
                 </ul>
               </li>

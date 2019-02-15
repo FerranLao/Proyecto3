@@ -9,11 +9,11 @@ export const StyledChat = styled.div`
     border-radius: 20px;
     position: fixed;
     right: 40px;
-    bottom: 0px;
+    bottom: 50px;
     z-index: 1000;
     margin: 0;
     padding: 12px 12px 16px 12px;
-    width: 300px;
+    width: 20%;
     font-family: "Helvetica Neue", "Helvetica", sans-serif;
     font-size: 16px;
     line-height: 22px;
@@ -43,7 +43,7 @@ export const StyledChat = styled.div`
     font-family: "Helvetica Neue", "Helvetica", sans-serif;
     font-size: 16px;
     line-height: 22px;
-    font-weight: 400;
+    font-weight: 200;
     color: #4b4b4b;
     -webkit-font-smoothing: antialiased;
 

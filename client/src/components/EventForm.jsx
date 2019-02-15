@@ -38,7 +38,7 @@ export class EventForm extends React.Component {
     const { name, description, size } = this.state.info;
     const {created}=this.state
     return (
-      <React.Fragment>
+      <div className="eventform">
         <h2>Create a party</h2>
         <Input data={name} func={this.handleChange} infoname="name" />
         <label>Party description</label>
@@ -77,7 +77,7 @@ export class EventForm extends React.Component {
             created ?  <Redirect to={`/events/${created}`}></Redirect>:null
         }
        
-      </React.Fragment>
+      </div>
     );
   }
 }

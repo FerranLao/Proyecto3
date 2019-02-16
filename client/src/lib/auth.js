@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 3000,
+  baseURL: "http://localhost:3000/auth",
+
   withCredentials: true
 });
 export class AuthAPI {
@@ -14,21 +14,22 @@ export class AuthAPI {
 
   static signup(user) {
     return instance
-      .post("/auth/signup", user)
+      .post("/signup", user)
       .then(res => res)
       .catch(AuthAPI.errorHandler);
   }
 
   static login(username, password) {
+    console.log(username)
     return instance
-      .post("/auth/login", { username, password })
+      .post("/login", { username, password })
       .then(res => res)
       .catch(AuthAPI.errorHandler);
   }
 
   static upload(file) {
     return instance
-      .post("/auth/image", file, {
+      .post("/image", file, {
         headers: { "Content-Type": "multipart/form-data" }
       })
       .then(res => res)
@@ -36,17 +37,17 @@ export class AuthAPI {
   }
 
   static logout() {
-    return instance.get("/auth/logout").then(e => e);
+    return instance.get("/logout").then(e => e);
   }
 
   static currentUser() {
     return instance
-      .get("/auth/currentuser")
+      .get("/currentuser")
       .then(res => res.data.user)
       .catch(AuthAPI.errorHandler);
   }
 
   static AddSteamId(id){
-    return instance.post("/auth/SteamId",{id}).then(e=>e)
+    return instance.post("/SteamId",{id}).then(e=>e)
   }
 }

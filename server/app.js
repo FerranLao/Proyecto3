@@ -104,4 +104,6 @@ app.use("/games", games);
 const events = require("./routes/events")
 app.use("/events", events);
 
+const chat = require("./routes/chat")
+app.use("/chat", chat)
 module.exports = app;

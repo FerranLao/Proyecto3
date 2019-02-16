@@ -6,6 +6,7 @@ const { isLoggedIn } = require("../middlewares/IsLogged");
 
 
 router.post("/getpage",isLoggedIn(), (req, res, next) => {
+  console.log(req.body)
   const { filter, page } = req.body;
   const reg = regularExp(filter);
 

@@ -48,7 +48,7 @@ class _EventPage extends React.Component {
 
   render() {
     const { event, inparty } = this.state;
-    const { game, name, description, creator, party } = event;
+    const { game, name, description, creator, party,chat } = event;
     return (
       <div>
         <StyledEventCard>
@@ -60,13 +60,13 @@ class _EventPage extends React.Component {
               <p>created by : {creator ? creator.username : null}</p>
 
               <StyledUserList>
-                {party.map(e => (
-                  <UserminiCard user={e} />
+                {party.map((e,i) => (
+                  <UserminiCard user={e} key={i} />
                 ))}
               </StyledUserList>
             </div>
             {inparty ? (
-              <Chat />
+              <Chat chatid={chat} />
             ) : (
               <button
                 onClick={() => this.join()}

@@ -1,5 +1,6 @@
 const initialStore = {
-  user: null
+  user: null,
+  chat:[]
 };
 
 export const rootReducer = (store = initialStore, action) => {

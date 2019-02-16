@@ -2,18 +2,36 @@ import React from "react";
 import { StyledChat } from "../lib/styledcomps/styledChat";
 import { Input } from "./Input";
 import { connect } from "react-redux";
-
-
+import { addClientMessage } from "../lib/redux/actions";
+import { Chatapi } from "../lib/Chatapi";
 
 export class _Chat extends React.Component {
   constructor() {
     super();
-    this.state = { 
-      messagearray:[],
-      message: "" };
+    this.state = {
+      message: ""
+    };
   }
 
+  componentDidMount(){
+    const {chatid} = this.props
+    console.log(chatid)
+    Chatapi.getchat(chatid).then(e=>console.log(e))
+  }
+
+  handlechange = ({ target }) => {
+    this.setState({ message: target.value });
+  };
+
+  sendmessage = e => {
+    const { message } = this.state;
+
+    e.preventDefault()
+    addClientMessage(message);
+    this.setState({ message: "" });
+  };
   render() {
+    const {chat} = this.props
     return (
       <StyledChat>
         <div className="chatter">
@@ -40,35 +58,19 @@ export class _Chat extends React.Component {
 
           <div className="chatter_post_signup">
             <div className="chatter_convo">
-              <span className="chatter_msg_item chatter_msg_item_admin">
-                <p href="" className="chatter_avatar">
-                  <img src="https://lukepeters.me/static/images/avatar_color.jpg" alt="avatar"/>
-                </p>
-                <strong className="chatter_name">Luke Peters</strong>Hello!
-              </span>
-
-              <span className="chatter_msg_item chatter_msg_item_user">
-                <p href="" className="chatter_avatar">
-                  <img src="http://img.lukepeters.me/jack.jpg" alt="avatar" />
-                </p>
-                <strong className="chatter_name">Jack Sparrow</strong>Oh hello. Who
-                is this?
-              </span>
 
             </div>
-            <Input />
+            
+            <Input func={this.handlechange}></Input> 
+            <button onClick={e=>{ this.sendmessage(e)}}>send</button>
           </div>
         </div>
 
-        <div className="pen_data">
-          A pen by{" "}
-          <a href="http://www.lukepeters.me" >
-            Luke Peters
-          </a>
-        </div>
       </StyledChat>
     );
   }
 }
 
-export const Chat = connect(state=>({user:state.user , chat:state.chats}))(_Chat)
+export const Chat = connect(state => ({ user: state.user, chat: state.chats }))(
+  _Chat
+);

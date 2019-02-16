@@ -7,7 +7,7 @@ const SteamUser = require("../models/SteamUser");
 const CircularJSON = require("circular-json");
 const Steam = require("../Steam/Apihandler");
 const uploadCloud = require("../multer/cloudinary.js");
-
+const { isLoggedIn } = require("../middlewares/IsLogged");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
@@ -79,7 +79,7 @@ router.get("/currentuser", (req, res) => {
   }
 });
 
-router.post("/SteamId", (req, res) => {
+router.post("/SteamId", isLoggedIn, (req, res) => {
   const { id } = req.body;
   Steam.getUser(id)
     .then(e => {

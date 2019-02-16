@@ -2,15 +2,10 @@ const express = require("express");
 const router = express.Router();
 const SteamGames = require("../models/SteamGames");
 const { regularExp } = require("../bin/helper");
-router.get("/getall", (req, res, next) => {
-  SteamGames.find({ type: "game" })
-    .then(games => {
-      res.json({ games });
-    })
-    .catch(e => res.json({ message: "Something went wrong" }));
-});
+const { isLoggedIn } = require("../middlewares/IsLogged");
 
-router.post("/getpage", (req, res, next) => {
+
+router.post("/getpage",isLoggedIn(), (req, res, next) => {
   const { filter, page } = req.body;
   const reg = regularExp(filter);
 
@@ -25,7 +20,7 @@ router.post("/getpage", (req, res, next) => {
     .catch(e => res.json({ message: "Something went wrong" }));
 });
 
-router.post("/getbyId",(req,res,next)=>{
+router.post("/getbyId",isLoggedIn(),(req,res,next)=>{
   const {id}=req.body
   SteamGames.findById(id).then(e=>{res.json(e)})
 })

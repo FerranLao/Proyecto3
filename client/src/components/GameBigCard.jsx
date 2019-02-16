@@ -20,7 +20,7 @@ export const GameBigCard = ({ game }) => {
       <div className="card-content">
         <div className="media">
           <div className="media-content">
-            <p className="title is-4">{name}</p>
+            <p className="title is-3 has-text-white-ter">{name}</p>
             <p className="subtitle is-6">developed by {developers}</p>
             <p>genres: {genres.map(e => e.description).join(", ")} </p>
             <p>tags: {categories.map(e => e.description).join(", ")}</p>

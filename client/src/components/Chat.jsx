@@ -4,6 +4,7 @@ import { Input } from "./Input";
 import { connect } from "react-redux";
 import { addClientMessage } from "../lib/redux/actions";
 import { Chatapi } from "../lib/Chatapi";
+import {WebsocketConnection} from "../lib/Websocket"
 
 export class _Chat extends React.Component {
   constructor() {
@@ -11,12 +12,12 @@ export class _Chat extends React.Component {
     this.state = {
       message: ""
     };
+  
   }
 
-  componentDidMount(){
-    const {chatid} = this.props
-    console.log(chatid)
-    Chatapi.getchat(chatid).then(e=>console.log(e))
+  componentDidMount() {
+    const { chatid } = this.props;
+    Chatapi.getchat(chatid).then(e=>console.log(e));
   }
 
   handlechange = ({ target }) => {
@@ -25,13 +26,12 @@ export class _Chat extends React.Component {
 
   sendmessage = e => {
     const { message } = this.state;
-
-    e.preventDefault()
-    addClientMessage(message);
+    const { chatid } = this.props;
+    Chatapi.sendMessage(message,chatid)
     this.setState({ message: "" });
   };
   render() {
-    const {chat} = this.props
+    const { chat } = this.props;
     return (
       <StyledChat>
         <div className="chatter">
@@ -57,15 +57,18 @@ export class _Chat extends React.Component {
           </div>
 
           <div className="chatter_post_signup">
-            <div className="chatter_convo">
+            <div className="chatter_convo" />
 
-            </div>
-            
-            <Input func={this.handlechange}></Input> 
-            <button onClick={e=>{ this.sendmessage(e)}}>send</button>
+            <Input func={this.handlechange} />
+            <button
+              onClick={e => {
+                this.sendmessage(e);
+              }}
+            >
+              send
+            </button>
           </div>
         </div>
-
       </StyledChat>
     );
   }

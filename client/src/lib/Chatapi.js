@@ -1,17 +1,20 @@
-import axios from "axios"
-
+import axios from "axios";
+import { wsConn } from "./redux/store";
+import {addClientMessage} from "./redux/actions"
 const instance = axios.create({
-    baseURL: "http://localhost:3000/chat",
-    timeout:2000,
-    withCredentials: true
-  });
+  baseURL: "http://localhost:3000/chat",
+  timeout: 2000,
+  withCredentials: true
+});
 
-export class Chatapi{
-    static getchat(id){
-        console.log(id)
-        return instance.post("/getchat",{id}).then(e=>e)
-    }
-    static sendMessage(id,message){
-        return instance.post("/sendMessage",{id,message}).then(e=>e)
-    }
+export class Chatapi {
+  static getchat(id) {
+    return instance.post("/getchat", { id }).then(e => e);
+  }
+  static sendMessage(id, message) {
+    addClientMessage()
+    wsConn.socket.emit("message","holi");
+    //return instance.post("/sendMessage", { message }).then(e => e);
+  }
+  
 }

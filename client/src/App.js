@@ -26,7 +26,7 @@ class _App extends Component {
               <Route exact path="/newevent" component={NewEvent} />
               <Route exact path="/newevent/:id"component={NewEventgame}/>
               <Route exact path="/events" component={EventSearch}/>
-              <Route exact path="/events/:id"component={EventPage}/>
+              <Route exact path="/events/:id" component={EventPage}/>
 
             </Switch>
           ) : (

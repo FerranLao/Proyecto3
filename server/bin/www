@@ -20,10 +20,11 @@ app.use((err, req, res, next) => {
   }
 });
 
+
 let server = http.createServer(app);
 var io = require('socket.io')(server);
-
 require('../websocket/websocket')(io);
+
 
 server.on('error', error => {
   if (error.syscall !== 'listen') { throw error }

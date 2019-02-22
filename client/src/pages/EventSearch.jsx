@@ -16,31 +16,34 @@ class _EventSearch extends React.Component {
       count: 0
     };
   }
+
   componentDidMount() {
-    const { page, filter } = this.state;
-    const { pathname } = this.props.location;
-    if (pathname === "/newevent") {
-      console.log("newevent ")
-      Events.getpage(filter, page).then(({ data }) => {
-        const { games, count } = data;
-        this.setState({ games, count });
-      });
-    } else {
-      console.log("npe")
-      Events.getOwnPage(filter, page).then(({ data }) => {
-        const { games, count } = data;
-        console.log(data)
-        this.setState({ games, count });
-      });
-    }
+    this.gotopage(0);
+  }
+  componentDidUpdate() {
+    this.gotopage(0);
   }
 
   gotopage = page => {
     const { filter } = this.state;
-    Events.getpage(filter, page).then(({ data }) => {
-      const { events, count } = data;
-      this.setState({ events, count, page });
-    });
+    const { pathname } = this.props.location;
+    if (pathname === "/events") {
+      Events.getpage(filter, page).then(({ data }) => {
+        const { events, count } = data;
+        console.log(events , this.state.events)
+        if (this.state.events !== events) {
+          this.setState({ events, count });
+        }
+      });
+    } else {
+      Events.getOwnPage(filter, page).then(({ data }) => {
+        const { events, count } = data;
+        console.log(events)
+        if (this.state.events !== events) {
+          this.setState({ events, count });
+        }
+      });
+    }
   };
 
   filter = ({ target }) => {

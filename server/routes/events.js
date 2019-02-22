@@ -12,7 +12,7 @@ router.post("/new", isLoggedIn(), (req, res, next) => {
     if (e) {
       return res.json({ message: "Name already taken" });
     }
-    Chat.create({messages:[]}).then(chat => {
+    Chat.create({ messages: [] }).then(chat => {
       const newEvent = {
         name,
         game,
@@ -39,7 +39,7 @@ router.post("/getevent", isLoggedIn(), (req, res, next) => {
 
 router.post("/getpage", isLoggedIn(), (req, res, next) => {
   const { filter, page } = req.body;
-  console.log(req.body)
+
   const reg = regularExp(filter);
 
   Events.find({ name: reg, private: false })
@@ -55,23 +55,23 @@ router.post("/getpage", isLoggedIn(), (req, res, next) => {
 });
 
 router.post("/getOwnPage", isLoggedIn(), (req, res, next) => {
-
-  const { id } = req.body;
+  const { _id } = req.user;
   const { filter, page } = req.body;
   const reg = regularExp(filter);
-  console.log(req.body)
 
-  Events.find({  party : { $contains : id } ,name: reg})
+  Events.find({ party: {$in : _id}, name: reg })
     .skip(page * 10)
     .limit(page * 10 + 10)
     .populate("game")
     .then(events => {
-      Events.count({ party : { $contains : id },name: reg }).then(count => {
-        console.log(count)
+      Events.count({ party: {$in : _id}, name: reg }).then(count => {
         res.json({ events, count });
       });
     })
-    .catch(e => res.json({ message: "Something went wrong" }));
+    .catch(e => {
+      console.log(e);
+      res.json({ message: "Something went wrong" });
+    });
 });
 
 router.post("/joinparty", isLoggedIn(), (req, res, next) => {
@@ -80,7 +80,5 @@ router.post("/joinparty", isLoggedIn(), (req, res, next) => {
     .populate("game event party creator")
     .then(e => res.json(e));
 });
-
-
 
 module.exports = router;

@@ -3,7 +3,7 @@ import { StyledResults } from "../lib/styledcomps/styledResults";
 import { GameCard } from "./GameCard";
 
 export const Resultbox = ({ gamearray, create, event ,myevent }) => {
-  console.log(myevent)
+
   return (
     <React.Fragment>
       <StyledResults 

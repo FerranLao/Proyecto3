@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const GameCard = ({ game, index = 0, create = false }) => {
+export const GameCard = ({ game, index = 0, create = false,join }) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
   return (
@@ -29,8 +29,9 @@ export const GameCard = ({ game, index = 0, create = false }) => {
           <Link
             to={`/events/${game._id}`}
             className="btn btn-outline movie-card__Link"
-          >
-            Wanna join?
+          >{
+            join ? "Check" : "Join?"
+          }
           </Link>
           </React.Fragment>
         )}

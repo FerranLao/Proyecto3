@@ -8,7 +8,7 @@ import { Signup } from "./pages/Signup";
 import { Home } from "./pages/Home";
 import { NewEvent } from "./pages/NewEvent";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import { NewEventgame } from "./pages/NewEventgame";
 import { EventPage } from "./pages/EventPage";
 import { EventSearch } from "./pages/EventSearch";
@@ -24,17 +24,16 @@ class _App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/newevent" component={NewEvent} />
-              <Route exact path="/newevent/:id"component={NewEventgame}/>
-              <Route exact path="/events" component={EventSearch}/>
-              <Route exact path="/events/:id" component={EventPage}/>
-
+              <Route exact path="/newevent/:id" component={NewEventgame} />
+              <Route exact path="/events" component={EventSearch} />
+              <Route exact path="/myevents" component={EventSearch} />
+              <Route exact path="/events/:id" component={EventPage} />
             </Switch>
           ) : (
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-           
             </Switch>
           )}
         </div>
@@ -43,5 +42,5 @@ class _App extends Component {
   }
 }
 
-const App =withRouter(connect(store => ({ user: store.user }))(_App));
+const App = withRouter(connect(store => ({ user: store.user }))(_App));
 export default App;

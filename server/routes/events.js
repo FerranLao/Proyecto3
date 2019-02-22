@@ -13,7 +13,6 @@ router.post("/new", isLoggedIn(), (req, res, next) => {
       return res.json({ message: "Name already taken" });
     }
     Chat.create({messages:[]}).then(chat => {
-      console.log(chat)
       const newEvent = {
         name,
         game,
@@ -55,11 +54,18 @@ router.post("/getpage", isLoggedIn(), (req, res, next) => {
     .catch(e => res.json({ message: "Something went wrong" }));
 });
 
+router.post("/getOwnPage", isLoggedIn(), (req, res, next) => {
+  const { id } = req.body;
+  Events.find({ party: id }).then(e => res.json(e));
+});
+
 router.post("/joinparty", isLoggedIn(), (req, res, next) => {
   const { id } = req.body;
   Events.findByIdAndUpdate(id, { $push: { party: req.user._id } })
     .populate("game event party creator")
     .then(e => res.json(e));
 });
+
+
 
 module.exports = router;

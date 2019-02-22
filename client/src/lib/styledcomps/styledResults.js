@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 
 export const StyledResults = styled.div`
-height:75vh;
-overflow-y:scroll;
+  height: 70vh;
+  overflow-y: scroll;
   @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
 
-    
-    font-family: "Montserrat", helvetica, arial, sans-serif;
-
+  font-family: "Montserrat", helvetica, arial, sans-serif;
 
   * {
     transition: 0.4s;
@@ -16,7 +14,7 @@ overflow-y:scroll;
   a {
     text-decoration: none;
   }
-
+  
   button {
     font-family: inherit;
     border: 0;
@@ -25,6 +23,40 @@ overflow-y:scroll;
   button:focus {
     outline: 0;
   }
+
+
+  ::-webkit-scrollbar {
+  width: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}   
+::-webkit-scrollbar-track-piece {
+  
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(255,0,0,0.8); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+} 
+::-webkit-scrollbar-corner {
+  
+}    
+::-webkit-resizer {
+  
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+
 
   .movie-card {
     background-size: contain;
@@ -53,10 +85,12 @@ overflow-y:scroll;
     }
   }
 
-  ${props=>props.image.map((e,i)=>`.index${i}{
+  ${props =>
+    props.image.map(
+      (e, i) => `.index${i}{
     background-image: url(${e})
-  }`)}
-
+  }`
+    )}
 
   .movie-card__overlay {
     width: 100%;
@@ -146,8 +180,8 @@ overflow-y:scroll;
     color: #ffffff;
     margin-bottom: 0.25em;
     opacity: 0.75;
-    height:70px;
-    overflow:hidden;
+    height: 70px;
+    overflow: hidden;
   }
   .movie-card__info {
     text-transform: uppercase;
@@ -187,7 +221,6 @@ overflow-y:scroll;
   }
 
   .btn::before {
-   
     vertical-align: middle;
     font-size: 1.5em;
     padding-right: 0.5em;

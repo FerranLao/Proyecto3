@@ -31,9 +31,12 @@ class _AddSteam extends React.Component {
     const { SteamId, message } = this.state;
     return (
       <StyledModal>
-        <a className="buttonmodal button is-primary" href="#openModal">
+        <div className="buttonmodal">
+        <a className="button is-primary" href="#openModal">
           Link your steam account
         </a>
+        </div>
+       
         <div id="openModal" className="modalbg">
           <div className="dialog">
             <a href="#close" title="Close" className="close">

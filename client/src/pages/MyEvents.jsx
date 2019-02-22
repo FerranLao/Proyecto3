@@ -8,7 +8,7 @@ import { Resultbox } from "../components/Resultbox";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { Pagination } from "../components/Pagination";
 
-class _NewEvent extends React.Component {
+class _MyEvents extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -19,8 +19,6 @@ class _NewEvent extends React.Component {
     };
   }
   componentDidMount() {
-    const {pathname} = this.props.location
-    
     const { page, filter } = this.state;
     Games.getpage(filter, page).then(({ data }) => {
       const { games, count } = data;
@@ -64,4 +62,4 @@ class _NewEvent extends React.Component {
   }
 }
 
-export const NewEvent = connect(store => ({ user: store.user }))(_NewEvent);
+export const MyEvents = connect(store => ({ user: store.user }))(_MyEvents);

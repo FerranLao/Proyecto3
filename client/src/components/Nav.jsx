@@ -40,6 +40,9 @@ const _Nav = ({ user, dispatch }) => {
                   <li>
                     <Link to="/newevent">New event</Link>
                   </li>
+                  <li>
+                    <Link to="/myevents">My event</Link>
+                  </li>
                 </ul>
               </li>
               <li>

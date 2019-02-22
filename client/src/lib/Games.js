@@ -18,4 +18,6 @@ export class Games{
     static getbyID(id){
       return instance.post("/getbyId",{id}).then(e=>e)
     }
+
+
 }

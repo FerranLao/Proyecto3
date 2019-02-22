@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const SteamGames = require("../models/SteamGames");
+const Events = require("../models/Events");
 const { regularExp } = require("../bin/helper");
 const { isLoggedIn } = require("../middlewares/IsLogged");
 
-
-router.post("/getpage",isLoggedIn(), (req, res, next) => {
-  console.log(req.body)
+router.post("/getpage", isLoggedIn(), (req, res, next) => {
+  console.log(req.body);
   const { filter, page } = req.body;
   const reg = regularExp(filter);
 
@@ -21,9 +21,13 @@ router.post("/getpage",isLoggedIn(), (req, res, next) => {
     .catch(e => res.json({ message: "Something went wrong" }));
 });
 
-router.post("/getbyId",isLoggedIn(),(req,res,next)=>{
-  const {id}=req.body
-  SteamGames.findById(id).then(e=>{res.json(e)})
-})
+router.post("/getbyId", isLoggedIn(), (req, res, next) => {
+  const { id } = req.body;
+  SteamGames.findById(id).then(e => {
+    res.json(e);
+  });
+});
+
+
 
 module.exports = router;

@@ -18,6 +18,16 @@ class _EventSearch extends React.Component {
   }
   componentDidMount() {
     const { page, filter } = this.state;
+    const {pathname} = this.props.location
+    if(pathname==="/newevent"){
+      Events.getpage(filter, page).then(({ data }) => {
+     const { games, count } = data;
+     this.setState({ games, count });
+   });}else{
+     Events.getOwnPage(filter,page).then(({data})=>{
+       console.log(data)
+     })
+   }
     Events.getpage(filter, page).then(({ data }) =>
       this.setState({ events: data.events, count: data.count })
     );
@@ -46,7 +56,7 @@ class _EventSearch extends React.Component {
       <div>
         {user.SteamUser ? null : <AddSteam />}
         <Input func={this.filter} />
-        <Resultbox gamearray={events} event />
+        <Resultbox gamearray={events} event myevent/>
         <Pagination
           func={this.gotopage}
           pages={Math.ceil(count / 10)}

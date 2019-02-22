@@ -12,4 +12,4 @@ AuthAPI.currentUser().then(user =>
   user ? store.dispatch({ type: "LOGIN", user }) : null
 );
 
-export const wsConn = new WebsocketConnection(store);
+// export const wsConn = new WebsocketConnection(store);

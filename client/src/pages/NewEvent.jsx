@@ -19,7 +19,7 @@ class _NewEvent extends React.Component {
     };
   }
   componentDidMount() {
-    const {pathname} = this.props.location
+
     
     const { page, filter } = this.state;
     Games.getpage(filter, page).then(({ data }) => {

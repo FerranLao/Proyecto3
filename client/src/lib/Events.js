@@ -18,7 +18,7 @@ export class Events{
     }
 
     static getOwnPage(filter,page){
-        return instance.post("/getOwnage",{filter:filter,page}).then(e=>e)
+        return instance.post("/getOwnPage",{filter:filter,page}).then(e=>e)
       }
     static join(id){
         return instance.post("/joinparty",{id}).then(e=>e)

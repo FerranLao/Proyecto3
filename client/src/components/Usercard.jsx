@@ -13,7 +13,6 @@ export const Usercard = ({ user }) => {
           </div>
           <div className="media-content">
             <p className="title is-4">{username}</p>
-           
           </div>
         </div>
       </div>

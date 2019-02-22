@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const GameCard = ({ game, index = 0, create = false,myevent }) => {
+export const GameCard = ({ game, index = 0, create = false,myevent ,location}) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
-  console.log(myevent)
+  console.log(location)
   return (
     <div className={"movie-card index" + index}>
       <div className="movie-card__overlay" />

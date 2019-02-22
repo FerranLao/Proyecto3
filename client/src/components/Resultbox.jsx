@@ -2,8 +2,8 @@ import React from "react";
 import { StyledResults } from "../lib/styledcomps/styledResults";
 import { GameCard } from "./GameCard";
 
-export const Resultbox = ({ gamearray, create, event ,join }) => {
-
+export const Resultbox = ({ gamearray, create, event ,myevent }) => {
+  console.log(myevent)
   return (
     <React.Fragment>
       <StyledResults 
@@ -19,7 +19,8 @@ export const Resultbox = ({ gamearray, create, event ,join }) => {
               key={e._id}
               game={e}
               create={create ? true : false}
-              join={join?true:false}
+         
+              myevent={myevent}
             />
           ))}
         </div>

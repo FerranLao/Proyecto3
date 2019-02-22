@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const GameCard = ({ game, index = 0, create = false,join }) => {
+export const GameCard = ({ game, index = 0, create = false,myevent }) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
+  console.log(myevent)
   return (
     <div className={"movie-card index" + index}>
       <div className="movie-card__overlay" />
@@ -30,7 +31,7 @@ export const GameCard = ({ game, index = 0, create = false,join }) => {
             to={`/events/${game._id}`}
             className="btn btn-outline movie-card__Link"
           >{
-            join ? "Check" : "Join?"
+            myevent ==="/myevents" ? "Check" : "Join?"
           }
           </Link>
           </React.Fragment>

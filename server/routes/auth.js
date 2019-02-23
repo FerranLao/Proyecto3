@@ -79,7 +79,7 @@ router.get("/currentuser", (req, res) => {
   }
 });
 
-router.post("/SteamId", isLoggedIn, (req, res) => {
+router.post("/SteamId", isLoggedIn(), (req, res) => {
   const { id } = req.body;
   Steam.getUser(id)
     .then(e => {

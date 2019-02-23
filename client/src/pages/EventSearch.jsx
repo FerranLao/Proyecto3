@@ -14,30 +14,21 @@ class _EventSearch extends React.Component {
       page: 0,
       filter: "",
       count: 0,
-      pathname: ""
     };
   }
 
   componentDidMount() {
-    const { pathname } = this.props.location;
-    this.setState({ pathname });
     this.gotopage(0);
   }
-  componentDidUpdate() {
-    const { pathname } = this.props.location;
-    if (pathname !== this.state.pathname) {
-      this.setState({ pathname });
-      this.gotopage(0);
-    }
-  }
+
 
   gotopage = page => {
     const { filter } = this.state;
-    const { pathname } = this.props.location;
-    if (pathname === "/events") {
+    const {type} =this.props
+
+    if (type === "events") {
       Events.getpage(filter, page).then(({ data }) => {
         const { events, count } = data;
-        console.log(events, this.state.events);
         this.setState({ events, count });
       });
     } else {

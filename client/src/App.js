@@ -25,8 +25,8 @@ class _App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/newevent" component={NewEvent} />
               <Route exact path="/newevent/:id" component={NewEventgame} />
-              <Route exact path="/events" component={EventSearch} />
-              <Route exact path="/myevents" component={EventSearch} />
+              <Route exact path="/events" component={(props) => <EventSearch key="A" type="events" {...props}/>} />
+              <Route exact path="/myevents" component={(props) => <EventSearch key="B" type="my" {...props}/>} />
               <Route exact path="/events/:id" component={EventPage} />
             </Switch>
           ) : (

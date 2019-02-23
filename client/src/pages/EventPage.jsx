@@ -21,7 +21,7 @@ class _EventPage extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     const { user } = this.props;
-
+    
     Events.getEvent(id).then(({ data }) => {
       let inparty = false;
       data.party.forEach(e => {

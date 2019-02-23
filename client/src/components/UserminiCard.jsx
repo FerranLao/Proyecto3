@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledUserMiniCard } from "../lib/styledcomps/UserMinicard";
-import { SocialApi } from "../lib/SocialApi";
+
 
 export const UserminiCard = ({ user, friend, addfriend }) => {
   console.log(friend);

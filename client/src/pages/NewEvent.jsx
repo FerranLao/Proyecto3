@@ -15,37 +15,53 @@ class _NewEvent extends React.Component {
       games: [],
       page: 0,
       filter: "",
-      count: 0
+      count: 0,
+      mygames: false
     };
   }
   componentDidMount() {
-
-    
-    const { page, filter } = this.state;
-    Games.getpage(filter, page).then(({ data }) => {
-      const { games, count } = data;
-      this.setState({ games, count });
-    });
+    this.gotopage(0);
   }
   filter = ({ target }) => {
-    Games.getpage(target.value, 0).then(({ data }) => {
-      const { games, count } = data;
-      this.setState({ games, count, page: 0 });
-    });
+    this.setState({ filter: target.value })
+    //this.gotopage(0);
   };
+  owngames = ()=>{
+    this.setState({ mygames: !this.state.mygames })
+    this.gotopage(0)
+  }
   gotopage = page => {
-    const { filter } = this.state;
-    Games.getpage(filter, page).then(({ data }) => {
-      const { games, count } = data;
-      this.setState({ games, count, page });
-    });
+    const { filter, mygames } = this.state;
+    const { SteamUser } = this.props.user;
+    if (mygames) {
+      Games.getpage(filter, page,SteamUser).then(({ data }) => {
+        const { games, count } = data;
+        this.setState({ games, count, page });
+      });
+    } else {
+      Games.getpage(filter, page).then(({ data }) => {
+        const { games, count } = data;
+        this.setState({ games, count, page });
+      });
+    }
   };
   render() {
     const { user } = this.props;
     const { games, page, count } = this.state;
+    console.log(user);
     return (
       <div>
-        {user.SteamUser ? null : <AddSteam />}
+        {user.SteamUser ? (
+          <label class="checkbox">
+            <input
+              type="checkbox"
+              onClick={() =>this.owngames()}
+            />
+            See only my games
+          </label>
+        ) : (
+          <AddSteam />
+        )}
         <Input func={this.filter} />
         {games ? (
           <React.Fragment>

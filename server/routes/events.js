@@ -39,17 +39,20 @@ router.post("/getevent", isLoggedIn(), (req, res, next) => {
 
 router.post("/getpage", isLoggedIn(), (req, res, next) => {
   const { filter, page } = req.body;
+  const { _id } = req.user;
 
   const reg = regularExp(filter);
 
-  Events.find({ name: reg, private: false })
+  Events.find({ name: reg, party: { $ne: _id }, private: false })
     .skip(page * 10)
     .limit(page * 10 + 10)
     .populate("game")
     .then(events => {
-      Events.count({ name: reg, private: false }).then(count => {
-        res.json({ events, count });
-      });
+      Events.count({ name: reg, party: { $ne: _id }, private: false }).then(
+        count => {
+          res.json({ events, count });
+        }
+      );
     })
     .catch(e => res.json({ message: "Something went wrong" }));
 });
@@ -59,12 +62,12 @@ router.post("/getOwnPage", isLoggedIn(), (req, res, next) => {
   const { filter, page } = req.body;
   const reg = regularExp(filter);
 
-  Events.find({ party: {$in : _id}, name: reg })
+  Events.find({ party: { $in: _id }, name: reg })
     .skip(page * 10)
     .limit(page * 10 + 10)
     .populate("game")
     .then(events => {
-      Events.count({ party: {$in : _id}, name: reg }).then(count => {
+      Events.count({ party: { $in: _id }, name: reg }).then(count => {
         res.json({ events, count });
       });
     })

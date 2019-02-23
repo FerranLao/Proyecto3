@@ -23,12 +23,19 @@ class _NewEvent extends React.Component {
     this.gotopage(0);
   }
   filter = ({ target }) => {
-    this.setState({ filter: target.value })
-    //this.gotopage(0);
+    new Promise((resolve,reject)=>{
+      resolve(this.setState({ filter: target.value }))
+    }).then(e=>this.gotopage(0))
+
+
   };
+
   owngames = ()=>{
-    this.setState({ mygames: !this.state.mygames })
-    this.gotopage(0)
+    new Promise((resolve,reject)=>{
+      resolve(  this.setState({ mygames: !this.state.mygames }))
+    }).then(e=>this.gotopage(0))
+  
+
   }
   gotopage = page => {
     const { filter, mygames } = this.state;

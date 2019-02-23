@@ -21,7 +21,6 @@ const _Nav = ({ user, dispatch }) => {
           <div className="bar" />
         </div>
       </div>
-
       <nav role="navigation" className="onoff" onClick={() => toggle()}>
         <ul>
           {user ? (
@@ -45,7 +44,11 @@ const _Nav = ({ user, dispatch }) => {
               </li>
               <li>
                 Groups
-                <ul />
+                <ul>
+                  <li>
+                    <Link to="/friends">friends</Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 Account

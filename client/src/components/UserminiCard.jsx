@@ -1,15 +1,25 @@
 import React from "react";
+import { StyledUserMiniCard } from "../lib/styledcomps/UserMinicard";
+import { SocialApi } from "../lib/SocialApi";
 
-export const UserminiCard = ({ user }) => {
-  const {username,image}=user
+export const UserminiCard = ({ user,friend,addfriend }) => {
+  const { username, image, _id } = user;
   return (
-   
-    <li className='friend'>
-      <img src={image} alt={username} />
-      <div className='name'>
-        {username}
-      </div>
-    </li>
-  
+    <StyledUserMiniCard>
+      <li className="friend flip">
+        <img src={image} alt={username} />
+        <div className="name">{username}</div>
+        {friend ?
+        
+        <p
+          onClick={() => {
+            addfriend(_id);
+          }}
+          className="friendbutton"
+        >
+          <i className="fas fa-plus" />
+        </p>:null}
+      </li>
+    </StyledUserMiniCard>
   );
 };

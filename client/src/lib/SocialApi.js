@@ -1,0 +1,15 @@
+import axios from "axios";
+
+const instance = axios.create({
+  baseURL: "http://localhost:3000/social",
+  timeout:2000,
+  withCredentials: true
+});
+
+export class SocialApi{
+
+
+    static addfriend(id){
+        instance.post("/addfriend",{id}).then(e=>e)
+    }
+}

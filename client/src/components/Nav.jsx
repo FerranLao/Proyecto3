@@ -27,12 +27,10 @@ const _Nav = ({ user, dispatch }) => {
           {user ? (
             <React.Fragment>
               <li>
-                <Link to="/">
-                  home <i className="fa fa-home" />
-                </Link>
+                <Link to="/">home</Link>
               </li>
               <li>
-                Events <i className="fa fa-music" />
+                Events
                 <ul>
                   <li>
                     <Link to="/events">Search events</Link>
@@ -46,11 +44,11 @@ const _Nav = ({ user, dispatch }) => {
                 </ul>
               </li>
               <li>
-                Groups <i className="fa fa-heartbeat" />
+                Groups
                 <ul />
               </li>
               <li>
-                Account <i className="fa fa-heartbeat" />
+                Account
                 <ul>
                   <li>
                     <Link
@@ -60,7 +58,7 @@ const _Nav = ({ user, dispatch }) => {
                         AuthAPI.logout().then(e => dispatch({ type: "LOGOUT" }))
                       }
                     >
-                      logout <i className="fa fa-home" />
+                      logout
                     </Link>
                   </li>
                 </ul>
@@ -69,14 +67,10 @@ const _Nav = ({ user, dispatch }) => {
           ) : (
             <React.Fragment>
               <li>
-                <Link to="/signup">
-                  signup <i className="fa fa-home" />
-                </Link>
+                <Link to="/signup">signup</Link>
               </li>
               <li>
-                <Link to="/login">
-                  login <i className="fa fa-home" />
-                </Link>
+                <Link to="/login">login</Link>
               </li>
             </React.Fragment>
           )}

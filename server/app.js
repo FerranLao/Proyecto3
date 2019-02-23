@@ -107,4 +107,7 @@ app.use("/events", events);
 
 const chat = require("./routes/chat")
 app.use("/chat", chat)
+
+const social = require("./routes/social")
+app.use("/social",social)
 module.exports = app;

@@ -16,7 +16,10 @@ export const StyledUserList = styled.ul`
     background: none;
     list-style-type: none;
   }
-
+  .friendbutton {
+    display:block;
+    opacity:0;
+  }
   .friend {
     color: whitesmoke;
     width: 100%;
@@ -28,10 +31,16 @@ export const StyledUserList = styled.ul`
     display: flex;
     align-items: center;
   }
+  .friend:hover {
+    .friendbutton {
+      opacity:1;
+    }
+    background-color:#393939;
+  }
 
   .friend img {
     width: 45px;
-    height: 45px;
+    height: 45showpx;
     border-radius: 30px;
     border: 2px solid #aaa;
     object-fit: cover;
@@ -43,16 +52,11 @@ export const StyledUserList = styled.ul`
     font-size: 18px;
   }
 
-  .friend.selected {
-    background: #43a047;
-    color: white;
-  }
+ 
 
   .friend.selected img {
     border-color: white;
   }
 
-  .friend:not(.selected):hover {
-    background: #ddd;
-  }
+ 
 `;

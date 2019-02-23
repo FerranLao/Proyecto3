@@ -13,15 +13,22 @@ class _EventSearch extends React.Component {
       events: [],
       page: 0,
       filter: "",
-      count: 0
+      count: 0,
+      pathname: ""
     };
   }
 
   componentDidMount() {
+    const { pathname } = this.props.location;
+    this.setState({ pathname });
     this.gotopage(0);
   }
   componentDidUpdate() {
-    this.gotopage(0);
+    const { pathname } = this.props.location;
+    if (pathname !== this.state.pathname) {
+      this.setState({ pathname });
+      this.gotopage(0);
+    }
   }
 
   gotopage = page => {
@@ -30,18 +37,13 @@ class _EventSearch extends React.Component {
     if (pathname === "/events") {
       Events.getpage(filter, page).then(({ data }) => {
         const { events, count } = data;
-        console.log(events , this.state.events)
-        if (this.state.events !== events) {
-          this.setState({ events, count });
-        }
+        console.log(events, this.state.events);
+        this.setState({ events, count });
       });
     } else {
       Events.getOwnPage(filter, page).then(({ data }) => {
         const { events, count } = data;
-        console.log(events)
-        if (this.state.events !== events) {
-          this.setState({ events, count });
-        }
+        this.setState({ events, count });
       });
     }
   };

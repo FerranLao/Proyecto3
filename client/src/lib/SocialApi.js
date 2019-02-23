@@ -10,6 +10,6 @@ export class SocialApi{
 
 
     static addfriend(id){
-        instance.post("/addfriend",{id}).then(e=>e)
+        return instance.post("/addfriend",{id}).then(e=>e)
     }
 }

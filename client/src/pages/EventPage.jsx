@@ -8,7 +8,6 @@ import { UserminiCard } from "../components/UserminiCard";
 import { StyledUserList } from "../lib/styledcomps/styledUserList";
 import { SocialApi } from "../lib/SocialApi";
 
-
 class _EventPage extends React.Component {
   constructor() {
     super();
@@ -39,8 +38,14 @@ class _EventPage extends React.Component {
     });
   }
 
-  addfriend(id){
-    SocialApi.addfriend(id).then(e=>console.log(e))
+  addfriend =(id) =>{
+    const { dispatch } = this.props;
+    SocialApi.addfriend(id).then(({ data }) => {
+      dispatch({
+        type: "LOGIN",
+        user: data
+      });
+    });
   }
 
   join() {
@@ -56,8 +61,8 @@ class _EventPage extends React.Component {
   render() {
     const { event, inparty } = this.state;
     const { game, name, description, creator, party, chat } = event;
-    const {user}=this.props
-    console.log(user.friends)
+    const { user } = this.props;
+
     return (
       <div>
         <StyledEventCard>
@@ -70,7 +75,12 @@ class _EventPage extends React.Component {
 
               <StyledUserList>
                 {party.map((e, i) => (
-                  <UserminiCard user={e} key={i} friend={user.friends.includes(e._id)?true:false}/>
+                  <UserminiCard
+                    user={e}
+                    key={i}
+                    friend={user.friends.includes(e._id) ? true : false}
+                    addfriend={this.addfriend}
+                  />
                 ))}
               </StyledUserList>
             </div>

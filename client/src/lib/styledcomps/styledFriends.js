@@ -26,4 +26,8 @@ export const StyledFriends = styled.div`
     border-radius: 100%;
     border: 1px solid black;
   }
+  .userBigCard{
+    display:flex;
+    height:50vh;
+  }
 `;

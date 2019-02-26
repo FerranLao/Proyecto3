@@ -16,7 +16,7 @@ class _Friends extends React.Component {
 
   componentDidMount() {
     SocialApi.getfriends().then(({ data }) => {
-        console.log(data)
+      console.log(data)
       this.setState({ friendlist: data ,selected:data[0]});
     });
   }
@@ -27,10 +27,10 @@ class _Friends extends React.Component {
       <StyledFriends>
         <div className="friends">
           {friendlist ? friendlist.map(e => 
-            <Friend key={e.username} user={e} />
+            <Friend key={e.user.username} user={e} />
           ):null}
         </div>
-        <div>
+        <div className="userBigCard">
             {selected ? <UserBigCard user={selected}></UserBigCard>:null}
         </div>
       </StyledFriends>
@@ -38,4 +38,4 @@ class _Friends extends React.Component {
   }
 }
 
-export const Friends = connect(state => ({ user: state.user }))(_Friends);
+export const Friends = connect(state => ({ user: state.user,chat:state.chat }))(_Friends);

@@ -13,7 +13,7 @@ class _EventSearch extends React.Component {
       events: [],
       page: 0,
       filter: "",
-      count: 0,
+      count: 0
     };
   }
 
@@ -21,10 +21,9 @@ class _EventSearch extends React.Component {
     this.gotopage(0);
   }
 
-
   gotopage = page => {
     const { filter } = this.state;
-    const {type} =this.props
+    const { type } = this.props;
 
     if (type === "events") {
       Events.getpage(filter, page).then(({ data }) => {

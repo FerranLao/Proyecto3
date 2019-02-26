@@ -5,12 +5,12 @@ const userSchema = new Schema(
   {
     username: { type: String, required: true },
     password: { type: String, required: true },
-    SteamUser: { type: Schema.Types.ObjectId , ref: "SteamUser"},
+    SteamUser: { type: Schema.Types.ObjectId, ref: "SteamUser" },
     image: String,
-    friends: [{ type: Schema.Types.ObjectId, ref: "Events" }],
+    friends: [{ type: Schema.Types.ObjectId, ref: "Friends" }],
     events: [{ type: Schema.Types.ObjectId, ref: "Events" }],
     groups: [{ type: Schema.Types.ObjectId, ref: "Groups" }],
-    rating: Array
+    rating: Array,
   },
   {
     timestamps: {

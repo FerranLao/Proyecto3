@@ -14,14 +14,17 @@ class _EventPage extends React.Component {
     this.state = {
       event: { game: { genres: [], categories: [] }, party: [] },
       iscreator: false,
-      inparty: false
+      inparty: false,
+      friendlist: []
     };
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
     const { user } = this.props;
-    
+    SocialApi.getfriends(user._id).then(({ data }) => {
+      this.setState({ friendlist: data });
+    });
     Events.getEvent(id).then(({ data }) => {
       let inparty = false;
       data.party.forEach(e => {
@@ -29,7 +32,6 @@ class _EventPage extends React.Component {
           inparty = true;
         }
       });
-      console.log(data.party);
       this.setState({
         event: data,
         creator: data.creator._id === user._id,
@@ -38,15 +40,16 @@ class _EventPage extends React.Component {
     });
   }
 
-  addfriend =(id) =>{
+  addfriend = id => {
     const { dispatch } = this.props;
     SocialApi.addfriend(id).then(({ data }) => {
+      console.log(data);
       dispatch({
         type: "LOGIN",
         user: data
       });
     });
-  }
+  };
 
   join() {
     const { _id } = this.state.event;
@@ -58,11 +61,21 @@ class _EventPage extends React.Component {
     console.log(this.state);
   }
 
-  render() {
-    const { event, inparty } = this.state;
-    const { game, name, description, creator, party, chat } = event;
-    const { user } = this.props;
+  isfriend(user) {
+    const { _id } = this.props.user;
+    const friends = this.state.friendlist.map(e =>
+      e.users.filter(el => el !== _id).join("")
+    );
+    if (friends.includes(user._id) || user._id === _id) {
+      return true;
+    }
+    return false;
+  }
 
+  render() {
+    const { event, inparty} = this.state;
+    const { game, name, description, creator, party, chat } = event;
+   
     return (
       <div>
         <StyledEventCard>
@@ -78,7 +91,7 @@ class _EventPage extends React.Component {
                   <UserminiCard
                     user={e}
                     key={i}
-                    friend={user.friends.includes(e._id) ? true : false}
+                    friend={this.isfriend(e) ? true : false}
                     addfriend={this.addfriend}
                   />
                 ))}

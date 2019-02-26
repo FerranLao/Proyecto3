@@ -14,7 +14,7 @@ export const UserBigCard = ({user}) =>{
       <div class="media-left">
         <figure class="image is-48x48">
          {SteamUser ?
-            <img src={username} alt="Placeholder image"/>:null
+            <img src={username} alt={username}/>:null
          } 
         </figure>
       </div>
@@ -26,10 +26,8 @@ export const UserBigCard = ({user}) =>{
 
     <div class="content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-      <a href="#">#css</a> <a href="#">#responsive</a>
-    
-    </div>
+      Phasellus nec iaculis mauris.
+       </div>
   </div>
 </div>
     )

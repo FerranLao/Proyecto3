@@ -15,7 +15,6 @@ export class Games {
     if (!steam) {
       return instance.post("/getpage", { filter: filter, page }).then(e => e);
     }
-    console.log("eii");
     return instance
       .post("/getmygames", { filter: filter, page, steam })
       .then(e => e);

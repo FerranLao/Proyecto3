@@ -1,14 +1,12 @@
-// module.exports = io => {
-//   console.log("Websocket Ready");
-//   io.on("connection", function(socket) {
- 
-//     console.log("a user connected");
-//     console.log(socket)
-//     socket.emit("mensaje", { text: "Conectado al servidor de Terra" });
-//     socket.on("message", obj => {
-//       console.log("NEW MESSAGE FROM CLIENT:");
-//       console.log(obj);
-//       socket.broadcast.emit("mensaje", obj);
-//     });
-//   });
-// };
+module.exports = io => {
+  console.log("Websocket Ready");
+  io.on("connection", function(socket) {
+    console.log("a user connected");
+    socket.on("message", obj => {
+      io.emit(obj.to, obj);
+    });
+    socket.on("disconnect", function() {
+      console.log("user disconected");
+    });
+  });
+};

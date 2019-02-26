@@ -1,20 +1,21 @@
-// import io from 'socket.io-client';
-// import { addServerMessage } from './redux/actions';
+import io from "socket.io-client";
+import { addServerMessage } from "./redux/actions";
 
+export class WebsocketConnection {
+    constructor(store){
+        this.store = store;
+        this.socket = io("http://localhost:3000");
+    }
 
-// export class WebsocketConnection {
-//     constructor(store){
-//         this.store = store;
-//         this.socket = io.connect('http://localhost:3000',{ 'forceNew': true });        ;
-//         this.socket.on('mensaje',({text}) => {
-//             this.store.dispatch(addServerMessage(text))
-//         })
-//     }
-//     sendMessage(text){
-//         console.log(`Sending message: ${text}`);
-//         this.socket.emit('new_message', {text})
-//     }
-//     connect(id){
-       
-//     }
-// }
+    connect(id){
+        console.log(id)
+        this.socket.on(id,({text,from}) => {
+            console.log("connected to "+id)
+            this.store.dispatch(addServerMessage(text,from))
+        })
+    }
+    disconnect(id){
+        this.socket.removeListener(id)
+        console.log("disconected")
+    }
+}

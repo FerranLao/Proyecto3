@@ -1,8 +1,4 @@
-
-
-
 export const addClientMessage = text => {
-
   return {
     type: "ADD_MESSAGE",
     message: {
@@ -12,11 +8,18 @@ export const addClientMessage = text => {
   };
 };
 
-export const addServerMessage = text => {
+export const getChat = chat => {
+  return {
+    type: "GET_CHAT",
+    chat: chat
+  };
+};
+
+export const addServerMessage = (text, from) => {
   return {
     type: "ADD_MESSAGE",
     message: {
-      from: "server",
+      from,
       text
     }
   };

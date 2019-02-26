@@ -12,7 +12,7 @@ router.post("/getpage", isLoggedIn(), (req, res, next) => {
 
   SteamGames.find({ name: reg, type: "game" })
     .skip(page * 10)
-    .limit(page * 10 + 10)
+    .limit(10)
     .then(games => {
       SteamGames.count({ name: reg, type: "game" }).then(count => {
         res.json({ games, count });

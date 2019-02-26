@@ -54,6 +54,9 @@ const _Nav = ({ user, dispatch }) => {
                 Account
                 <ul>
                   <li>
+                    <Link to="/invites" className="backgroundred">Invites</Link>
+                  </li>
+                  <li>
                     <Link
                       to="/"
                       className="backgroundred"

@@ -13,6 +13,7 @@ import { NewEventgame } from "./pages/NewEventgame";
 import { EventPage } from "./pages/EventPage";
 import { EventSearch } from "./pages/EventSearch";
 import { Friends } from "./pages/Friends";
+import { Invitations } from "./pages/Invitations";
 
 class _App extends Component {
   render() {
@@ -26,10 +27,23 @@ class _App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/newevent" component={NewEvent} />
               <Route exact path="/newevent/:id" component={NewEventgame} />
-              <Route exact path="/events" component={(props) => <EventSearch key="A" type="events" {...props}/>} />
-              <Route exact path="/myevents" component={(props) => <EventSearch key="B" type="my" {...props}/>} />
+              <Route
+                exact
+                path="/events"
+                component={props => (
+                  <EventSearch key="A" type="events" {...props} />
+                )}
+              />
+              <Route
+                exact
+                path="/myevents"
+                component={props => (
+                  <EventSearch key="B" type="my" {...props} />
+                )}
+              />
               <Route exact path="/events/:id" component={EventPage} />
-              <Route exact path="/friends" component={Friends}/>
+              <Route exact path="/friends" component={Friends} />
+              <Route exact path="/invites" component={Invitations} />
             </Switch>
           ) : (
             <Switch>

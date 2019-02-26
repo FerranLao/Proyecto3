@@ -1,24 +1,48 @@
-import React from "react"
+import React from "react";
 import { connect } from "react-redux";
+import { SocialApi } from "../lib/SocialApi";
+import { Invite } from "../components/Invite";
+import { StyledInvite } from "../lib/styledcomps/styledInvite";
 
+class _Invitations extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      view: "income",
+      invites: []
+    };
+  }
 
-class _Invitations extends React.Component{
+  componentDidMount() {
+    SocialApi.getinvites().then(({ data }) => {
+      this.setState({ invites: data });
+    });
+  }
 
-    constructor(){
-        super()
-        this.state={
+  accept(id) {
+    SocialApi.accept(id).then(e=>console.log(e))
+  }
 
-        }
-    }
+  reject() {
 
+  }
 
-
-
-    render(){
-        return(<p>
-
-        </p>)
-    }
+  render() {
+    const { invites } = this.state;
+    return (
+      <StyledInvite>
+        <section class="section">
+          <div class="section__container">
+            {invites.map(e => (
+              <Invite invite={e} accept={this.accept} reject={this.reject}/>
+            ))}
+          </div>
+        </section>
+      </StyledInvite>
+    );
+  }
 }
 
-export const Invitations = connect(state=>({user:state.user}))(_Invitations)
+export const Invitations = connect(state => ({ user: state.user }))(
+  _Invitations
+);

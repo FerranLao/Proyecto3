@@ -20,12 +20,14 @@ class _Invitations extends React.Component {
   }
 
   accept(id) {
-    SocialApi.accept(id).then(e=>console.log(e))
+    SocialApi.accept(id).then(e => {
+      SocialApi.getinvites().then(({ data }) => {
+        this.setState({ invites: data });
+      });
+    });
   }
 
-  reject() {
-
-  }
+  reject() {}
 
   render() {
     const { invites } = this.state;
@@ -34,7 +36,7 @@ class _Invitations extends React.Component {
         <section class="section">
           <div class="section__container">
             {invites.map(e => (
-              <Invite invite={e} accept={this.accept} reject={this.reject}/>
+              <Invite invite={e} accept={this.accept} reject={this.reject} />
             ))}
           </div>
         </section>

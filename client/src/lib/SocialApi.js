@@ -29,4 +29,8 @@ export class SocialApi {
   static accept(id){
     return instance.post("/accept",{id}).then(e=>e)
   }
+
+  static reject(id){
+    return instance.post("/reject",{id}).then(e=>e)
+  }
 }

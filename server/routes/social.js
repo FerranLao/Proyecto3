@@ -60,9 +60,23 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
         .then(friend =>
           User.findOneAndUpdate(to, { push: { friends: friend } })
         )
+        .then(e => {
+          Invitation.findByIdAndDelete(id);
+        })
         .then(e => res.json("done"));
     }
   });
 });
+
+
+router.post("/reject",isLoggedIn(),(req,res,next)=>{
+  const {id}= req.body;
+  Invitation.findById(id).then(e=>{
+    const {type,from,to}=e;
+    if(type=="Friend"){
+      User.findByIdAndUpdate(from,{$pull:{friends:e.for}})
+    }
+  })
+})
 
 module.exports = router;

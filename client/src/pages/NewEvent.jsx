@@ -23,25 +23,21 @@ class _NewEvent extends React.Component {
     this.gotopage(0);
   }
   filter = ({ target }) => {
-    new Promise((resolve,reject)=>{
-      resolve(this.setState({ filter: target.value }))
-    }).then(e=>this.gotopage(0))
-
-
+    new Promise((resolve, reject) => {
+      resolve(this.setState({ filter: target.value }));
+    }).then(e => this.gotopage(0));
   };
 
-  owngames = ()=>{
-    new Promise((resolve,reject)=>{
-      resolve(  this.setState({ mygames: !this.state.mygames }))
-    }).then(e=>this.gotopage(0))
-  
-
-  }
+  owngames = () => {
+    new Promise((resolve, reject) => {
+      resolve(this.setState({ mygames: !this.state.mygames }));
+    }).then(e => this.gotopage(0));
+  };
   gotopage = page => {
     const { filter, mygames } = this.state;
     const { SteamUser } = this.props.user;
     if (mygames) {
-      Games.getpage(filter, page,SteamUser).then(({ data }) => {
+      Games.getpage(filter, page, SteamUser).then(({ data }) => {
         const { games, count } = data;
         this.setState({ games, count, page });
       });
@@ -60,10 +56,7 @@ class _NewEvent extends React.Component {
       <div>
         {user.SteamUser ? (
           <label class="checkbox">
-            <input
-              type="checkbox"
-              onClick={() =>this.owngames()}
-            />
+            <input type="checkbox" onClick={() => this.owngames()} />
             See only my games
           </label>
         ) : (

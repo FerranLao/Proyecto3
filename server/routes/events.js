@@ -43,9 +43,9 @@ router.post("/getpage", isLoggedIn(), (req, res, next) => {
 
   const reg = regularExp(filter);
 
-  Events.find({ name: reg, party: { $ne: _id }, private: false })
+  Events.find({ name: reg, party: { $ne: _id }, private: false, isFull: false })
     .skip(page * 10)
-    .limit(page * 10 + 10)
+    .limit(10)
     .populate("game")
     .then(events => {
       Events.count({ name: reg, party: { $ne: _id }, private: false }).then(
@@ -79,9 +79,17 @@ router.post("/getOwnPage", isLoggedIn(), (req, res, next) => {
 
 router.post("/joinparty", isLoggedIn(), (req, res, next) => {
   const { id } = req.body;
-  Events.findByIdAndUpdate(id, { $push: { party: req.user._id } })
+  Events.findByIdAndUpdate(id, { $push: { party: req.user._id } }, {new: true})
     .populate("game event party creator")
-    .then(e => res.json(e));
+    .then(e => {
+      console.log(e.party.length,e.size,e.isFull)
+      if (e.size >= e.party.length) {
+        Events.findByIdAndUpdate(id, { isFull: true }).then(e =>
+          console.log("party full")
+        );
+      }
+      res.json(e);
+    });
 });
 
 module.exports = router;

@@ -9,10 +9,11 @@ const Invitation = require("../models/Invitation");
 
 router.get("/getfriends", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
-  Friends.find({ users: _id }).then(e => {
-    console.log(e);
-    res.json(e);
-  });
+  Friends.find({ users: _id })
+    .populate("users")
+    .then(e => {
+      res.json(e);
+    });
 });
 
 router.get("/getinvites", isLoggedIn(), (req, res, next) => {
@@ -45,7 +46,10 @@ router.post("/addfriend", isLoggedIn(), (req, res, next) => {
 
     Friends.create({ users: [id, _id] }).then(e => {
       Invitation.create({ from: _id, to: id, for: e._id, type: "Friend" }).then(
-        e => res.json("invited")
+        e => {
+          console.log("invited");
+          res.json("invited");
+        }
       );
     });
   });
@@ -63,20 +67,29 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
         .then(e => {
           Invitation.findByIdAndDelete(id);
         })
-        .then(e => res.json("done"));
+        .then(e => {
+          console.log("accepted");
+          res.json("done");
+        });
     }
   });
 });
 
-
-router.post("/reject",isLoggedIn(),(req,res,next)=>{
-  const {id}= req.body;
-  Invitation.findById(id).then(e=>{
-    const {type,from,to}=e;
-    if(type=="Friend"){
-      User.findByIdAndUpdate(from,{$pull:{friends:e.for}})
+router.post("/reject", isLoggedIn(), (req, res, next) => {
+  const { id } = req.body;
+  Invitation.findById(id).then(e => {
+    const { type, from, to } = e;
+    if (type == "Friend") {
+      User.findByIdAndUpdate(from, { $pull: { friends: e.for } }).then(e => {
+        Friends.findByIdAndDelete(to).then(e =>
+          Invitation.findByIdAndDelete(id).then(e => {
+            console.log("rejected");
+            res.json("done");
+          })
+        );
+      });
     }
-  })
-})
+  });
+});
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const GameCard = ({ game, index = 0, create = false,myevent }) => {
+export const GameCard = ({ game, index = 0, create = false, myevent }) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
   return (
@@ -25,14 +25,15 @@ export const GameCard = ({ game, index = 0, create = false,myevent }) => {
           )
         ) : (
           <React.Fragment>
-            <p>{game.description}</p>
-          <Link
-            to={`/events/${game._id}`}
-            className="btn btn-outline movie-card__Link"
-          >{
-            myevent ==="/myevents" ? "Check" : "Join?"
-          }
-          </Link>
+              <h4 className="movie-card__info">{game.description}</h4>
+            <p>{game.party.length}/{game.size}</p>
+
+            <Link
+              to={`/events/${game._id}`}
+              className="btn btn-outline movie-card__Link"
+            >
+              {myevent === "/myevents" ? "Check" : "Join?"}
+            </Link>
           </React.Fragment>
         )}
       </div>

@@ -3,7 +3,7 @@ import { wsConn } from "./redux/store";
 import { addClientMessage } from "./redux/actions";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/chat",
+  baseURL: process.env.NODE_ENV === "production" ? "":"http://localhost:3000/chat",
   timeout: 2000,
   withCredentials: true
 });

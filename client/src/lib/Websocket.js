@@ -8,7 +8,7 @@ export class WebsocketConnection {
   }
 
   connect(id) {
-    this.socket = io("http://localhost:3000");
+    this.socket = io( process.env.NODE_ENV === "production" ? "":"http://localhost:3000");
     this.socket.on(id, ({ text, from }) => {
       console.log("connected to " + id);
       this.store.dispatch(addServerMessage(text, from));

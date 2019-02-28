@@ -94,8 +94,7 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
-const index = require("./routes/index");
-app.use("/", index);
+
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
@@ -111,4 +110,10 @@ app.use("/chat", chat)
 
 const social = require("./routes/social")
 app.use("/social",social)
+
+
+app.use("*", (req,res)=>{
+  res.sendFile(path.join(__dirname,"public/index.html"))
+});
+
 module.exports = app;

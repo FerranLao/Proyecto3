@@ -4,7 +4,7 @@ import { Input } from "./Input";
 import { connect } from "react-redux";
 import { Chatapi } from "../lib/Chatapi";
 import { Messages } from "./Messages";
-import {getChat} from "../lib/redux/actions"
+import { getChat } from "../lib/redux/actions";
 
 export class _Chat extends React.Component {
   constructor() {
@@ -15,13 +15,12 @@ export class _Chat extends React.Component {
   }
 
   componentDidMount() {
-    const { chatid ,dispatch} = this.props;
-    
-    Chatapi.getchat(chatid).then(({data}) =>dispatch(getChat(data)));
+    const { chatid, dispatch } = this.props;
+    Chatapi.getchat(chatid).then(({ data }) => dispatch(getChat(data)));
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     const { chatid } = this.props;
-    Chatapi.exitchat(chatid)
+    Chatapi.exitchat(chatid);
   }
   handlechange = ({ target }) => {
     this.setState({ message: target.value });
@@ -29,27 +28,45 @@ export class _Chat extends React.Component {
 
   sendmessage = e => {
     const { message } = this.state;
-    const { chatid,user } = this.props;
-    Chatapi.sendMessage(message, chatid,user._id);
+    const { chatid, user } = this.props;
+    Chatapi.sendMessage(message, chatid, user._id);
     this.setState({ message: "" });
   };
+
+  member(from) {
+    const { members } = this.props;
+    let member;
+    members.forEach(e => {
+      if (e._id === from) {
+        member = e;
+      }
+    });
+    return member;
+  }
   render() {
     const { message } = this.state;
-    const {chat}=this.props
+    const { chat, user } = this.props;
     return (
       <StyledChat>
-        <div >
-        {chat.map(e=><Messages data={e}></Messages>)}
-
-            <Input func={this.handlechange} data={message} />
-            <button
-              onClick={e => {
-                this.sendmessage(e);
-              }}
-            >
-              send
-            </button>
-       
+        <div>
+          <div className="chatcontainer scroll scrollbar">
+            {chat.map(e => (
+              <Messages
+                me={e.from === user._id}
+                member={this.member(e.from)}
+                data={e}
+                key={e._id}
+              />
+            ))}
+          </div>
+          <Input func={this.handlechange} data={message} />
+          <button
+            onClick={e => {
+              this.sendmessage(e);
+            }}
+          >
+            send
+          </button>
         </div>
       </StyledChat>
     );

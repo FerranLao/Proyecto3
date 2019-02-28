@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledFriends = styled.div`
+height:45vh;
   .friends {
     width: 50%;
     display: flex;
@@ -8,7 +9,6 @@ export const StyledFriends = styled.div`
     flex-wrap: wrap;
     margin: 2%;
   }
-
   .friend {
     display: flex;
     justify-content: center;

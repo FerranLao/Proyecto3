@@ -9,7 +9,7 @@ const Invitation = require("../models/Invitation");
 
 router.get("/getfriends", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
-  Friends.find({ users: _id })
+  Friends.find({ users: { $in: [_id] }, accepted: true })
     .populate("users")
     .then(e => {
       res.json(e);
@@ -43,7 +43,6 @@ router.post("/addfriend", isLoggedIn(), (req, res, next) => {
       console.log("already friends");
       return res.json({ message: "already friends" });
     }
-
     Friends.create({ users: [id, _id] }).then(e => {
       Invitation.create({ from: _id, to: id, for: e._id, type: "Friend" }).then(
         e => {
@@ -60,17 +59,20 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
   Invitation.findById(id).then(e => {
     const { type, from, to } = e;
     if (type == "Friend") {
-      Friends.findByIdAndUpdate(e.for, { accepted: true })
-        .then(friend =>
-          User.findOneAndUpdate(to, { push: { friends: friend } })
-        )
-        .then(e => {
-          Invitation.findByIdAndDelete(id);
-        })
-        .then(e => {
-          console.log("accepted");
-          res.json("done");
-        });
+      Chat.create({}).then(chat=> {
+        console.log(chat)
+        Friends.findByIdAndUpdate(e.for, { accepted: true,chat:chat._id },{new:true})
+          .then(friend =>
+            User.findOneAndUpdate(to, { push: { friends: friend } })
+          )
+          .then(e => {
+            Invitation.findByIdAndDelete(id);
+          })
+          .then(e => {
+            console.log("accepted");
+            res.json("done");
+          });
+      });
     }
   });
 });

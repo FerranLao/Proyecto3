@@ -14,7 +14,7 @@ export const StyledResults = styled.div`
   a {
     text-decoration: none;
   }
-  
+
   button {
     font-family: inherit;
     border: 0;
@@ -24,39 +24,33 @@ export const StyledResults = styled.div`
     outline: 0;
   }
 
-
   ::-webkit-scrollbar {
-  width: 12px;
-}
+    width: 12px;
+  }
 
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track-piece {
+  }
 
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-  box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}   
-::-webkit-scrollbar-track-piece {
-  
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background: rgba(255,0,0,0.8); 
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-} 
-::-webkit-scrollbar-corner {
-  
-}    
-::-webkit-resizer {
-  
-}
-::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
-}
-
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  ::-webkit-scrollbar-corner {
+  }
+  ::-webkit-resizer {
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+  }
 
   .movie-card {
     background-size: contain;

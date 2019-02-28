@@ -1,11 +1,15 @@
 import React from "react";
 
-export const Friend = ({ user }) => {
+export const Friend = ({ user,index,select }) => {
   const { image, username } = user;
   return (
-    <div className="friend">
-      <img src={image} alt={username} />
-      <p>{username}</p>
-    </div>
+    <React.Fragment>
+      {user[0] ? (
+        <div className="friend" onClick={()=>select(index)}>
+          <img src={image} alt={username} />
+          <p>{username}</p>
+        </div>
+      ) : null}
+    </React.Fragment>
   );
 };

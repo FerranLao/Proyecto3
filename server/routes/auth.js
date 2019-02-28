@@ -28,7 +28,6 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/image", uploadCloud.single("photo"), (req, res, next) => {
-  console.log();
   res.json(req.file);
 });
 

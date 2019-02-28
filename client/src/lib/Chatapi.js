@@ -11,7 +11,6 @@ const instance = axios.create({
 export class Chatapi {
   static getchat(id) {
     wsConn.connect(id);
-    console.log("Connected");
     return instance.post("/getchat", { id }).then(e => e);
   }
   static sendMessage(text, to, from) {

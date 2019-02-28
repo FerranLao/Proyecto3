@@ -98,7 +98,7 @@ class _EventPage extends React.Component {
               </StyledUserList>
             </div>
             {inparty ? (
-              <Chat chatid={chat} />
+              <Chat chatid={chat} members={party} />
             ) : (
               <button
                 onClick={() => this.join()}

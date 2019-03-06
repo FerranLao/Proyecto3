@@ -1,5 +1,6 @@
 # Dependency directory
 node_modules
+server/bin/SteamGames.json
 
 # Debug log from npm
 npm-debug.log

@@ -4,13 +4,13 @@ export const Messages = ({ data, me, member }) => {
   return (
     <React.Fragment>
       <li className={me?"you":"other"}>
-        <a className="user" href="#">
+        <div className="user" href="#">
           <img
             alt=""
             src={member.image}
           />
           <p className="username">{member.username}</p>
-        </a>
+        </div>
         <div className="message">
           <p>
             {data.text}

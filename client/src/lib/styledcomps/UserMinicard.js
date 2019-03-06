@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledUserMiniCard = styled.ul`
+margin:0;
   .friendbutton {
     border-radius: 100%;
     text-align: center;

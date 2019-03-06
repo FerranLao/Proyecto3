@@ -6,6 +6,9 @@ const User = require("../models/User");
 const Chat = require("../models/Chat");
 const Friends = require("../models/Friends");
 const Invitation = require("../models/Invitation");
+const SteamUser = require("../models/SteamUser")
+
+
 
 router.get("/getfriends", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
@@ -95,5 +98,10 @@ router.post("/reject", isLoggedIn(), (req, res, next) => {
     }
   });
 });
+
+router.post("/getSteamUser",isLoggedIn(),(req,res,next)=>{
+  const { id } = req.body;
+  SteamUser.findById(id).then(e=>res.json(e))
+})
 
 module.exports = router;

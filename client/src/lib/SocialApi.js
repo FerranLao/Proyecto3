@@ -21,7 +21,7 @@ export class SocialApi {
   static getinvites() {
     return instance.get("/getinvites").then(e => e);
   }
-  
+
   static getmyinvites() {
     return instance.get("/getmyinvites").then(e => e);
   }
@@ -32,5 +32,8 @@ export class SocialApi {
 
   static rejectinvite(id) {
     return instance.post("/reject", { id }).then(e => e);
+  }
+  static getSteamUser(id){
+    return instance.post("/getSteamUser",{id}).then(e=>e)
   }
 }

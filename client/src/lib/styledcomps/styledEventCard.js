@@ -18,6 +18,13 @@ export const StyledEventCard = styled.div`
     flex-direction:column;
     justify-content:space-between;
   }
+  .eventdata{
+    height:120vh; 
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+  }
   .content {
     padding-top: 10px;
     height: 19vh;

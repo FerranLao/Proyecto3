@@ -9,9 +9,44 @@ body{
   padding-top:10vh;
 
 }
+.content ul{
+  margin:0
+}
 
 
 .selectlabel{
   display: flex;
   flex-direction: row;
+}
+.bottombox{
+  
+  display:flex;
+  justify-content: space-around;
+}
+.chatspace{
+  width: 63%;
+}
+.bigcard{
+  width: 35%; 
+}
+.eventbox{
+  display: flex;
+  justify-content: flex-start;
+  bottom: 50px;
+  width: 100%;
+}
+.eventdata  {
+  width: 110%;
+}
+.eventinfo{
+  padding:10px;
+  height: 60vh;
+}
+.eventchat{
+  width: 100%;
+}
+.userlist{
+  widows: 20%;
+  margin-left:-5%;
+  margin-right: -4%;
 }

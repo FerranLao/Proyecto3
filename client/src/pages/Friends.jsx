@@ -23,10 +23,9 @@ class _Friends extends React.Component {
 
   selectfriend = index => {
     const selected = this.state.friendlist[index];
-    new Promise((resolve) => {
+    new Promise(resolve => {
       resolve(this.setState({ selected: null }));
     }).then(e => this.setState({ selected }));
-    ;
   };
 
   notme(arr) {
@@ -60,14 +59,19 @@ class _Friends extends React.Component {
                 )
               : null}
           </div>
-          <div className="userBigCard">
-            {selected ? <UserBigCard user={selected} /> : null}
-          </div>
         </StyledFriends>
-        <div>
-          {selected ? (
-            <Chat chatid={selected.chat} members={selected.users} />
-          ) : null}
+        <div className="bottombox">
+          <div className="bigcard">
+            {
+              selected ?<UserBigCard user={this.notme(selected.users)}></UserBigCard>:null
+            }
+            
+          </div>
+          <div className="chatspace">
+            {selected ? (
+              <Chat chatid={selected.chat} members={selected.users} />
+            ) : null}
+          </div>
         </div>
       </React.Fragment>
     );

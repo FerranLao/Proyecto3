@@ -7,6 +7,30 @@ export const StyledUserList = styled.ul`
   margin: 0;
   overflow-y: scroll;
 
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track-piece {
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  ::-webkit-scrollbar-corner {
+  }
+  ::-webkit-resizer {
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255, 0, 0, 0.4);
+  }
   #friend-list {
     display: block;
     margin: 0;
@@ -15,6 +39,7 @@ export const StyledUserList = styled.ul`
     height: 100%;
     background: none;
     list-style-type: none;
+    
   }
   .friendbutton {
     display:block;

@@ -78,31 +78,39 @@ class _EventPage extends React.Component {
         <StyledEventCard>
           <GameBigCard game={game} />
           <div className="eventform">
-            <div>
-              <h1>{name}</h1>
-              <h2>{description}</h2>
-              <p>created by : {creator ? creator.username : null}</p>
-              <StyledUserList>
-                {party.map((e, i) => (
-                  <UserminiCard
-                    user={e}
-                    key={i}
-                    friend={this.isfriend(e) ? true : false}
-                    addfriend={this.addfriend}
-                  />
-                ))}
-              </StyledUserList>
+            <div className="eventdata">
+              <div className="eventinfo">
+                <h1>{name}</h1>
+                <h2>{description}</h2>
+                <p>created by : {creator ? creator.username : null}</p>
+              </div>
+              <div className="eventbox">
+                <div className="userlist">
+                  <StyledUserList>
+                    {party.map((e, i) => (
+                      <UserminiCard
+                        user={e}
+                        key={i}
+                        friend={this.isfriend(e) ? true : false}
+                        addfriend={this.addfriend}
+                      />
+                    ))}
+                  </StyledUserList>
+                </div>
+                <div className="eventchat">
+                  {inparty ? (
+                    <Chat chatid={chat} members={party} />
+                  ) : (
+                    <button
+                      onClick={() => this.join()}
+                      className="button is-success is-active"
+                    >
+                      Join!
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-            {inparty ? (
-              <Chat chatid={chat} members={party} />
-            ) : (
-              <button
-                onClick={() => this.join()}
-                className="button is-success is-active"
-              >
-                Join!
-              </button>
-            )}
           </div>
         </StyledEventCard>
       </div>

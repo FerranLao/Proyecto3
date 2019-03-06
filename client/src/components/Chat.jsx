@@ -19,7 +19,6 @@ export class _Chat extends React.Component {
     this.getchat();
   }
 
-
   getchat = () => {
     const { chatid, dispatch } = this.props;
     this.setState({ chatid });
@@ -44,6 +43,7 @@ export class _Chat extends React.Component {
   }
 
   sendmessage = e => {
+    e.preventDefault()
     const { message } = this.state;
     const { chatid, user } = this.props;
     Chatapi.sendMessage(message, chatid, user._id).then(e =>
@@ -67,28 +67,29 @@ export class _Chat extends React.Component {
     const { chat, user } = this.props;
     return (
       <StyledChat>
-        <div>
-          <div className="chatcontainer scroll scrollbar">
-            {chat.map(e =>
-              e ? (
-                <Messages
-                  me={e.from === user._id}
-                  member={this.member(e.from)}
-                  data={e}
-                  key={e._id}
-                />
-              ) : null
-            )}
+        <section>
+          <div class="chat ">
+            <ul className="chatcontainer  scroll scrollbar">
+              {chat.map(e =>
+                e ? (
+                  <Messages
+                    me={e.from === user._id}
+                    member={this.member(e.from)}
+                    data={e}
+                    key={e._id}
+                  />
+                ) : null
+              )}
+            </ul>
           </div>
+        </section>
+        <form className="form"
+          onSubmit={e => {
+            this.sendmessage(e);
+          }}
+        >
           <Input func={this.handlechange} data={message} />
-          <button
-            onClick={e => {
-              this.sendmessage(e);
-            }}
-          >
-            send
-          </button>
-        </div>
+        </form>
       </StyledChat>
     );
   }
@@ -97,3 +98,28 @@ export class _Chat extends React.Component {
 export const Chat = connect(state => ({ user: state.user, chat: state.chat }))(
   _Chat
 );
+
+{
+  /* <div>
+<div className="chatcontainer scroll scrollbar">
+  {chat.map(e =>
+    e ? (
+      <Messages
+        me={e.from === user._id}
+        member={this.member(e.from)}
+        data={e}
+        key={e._id}
+      />
+    ) : null
+  )}
+</div>
+<Input func={this.handlechange} data={message} />
+<button
+  onClick={e => {
+    this.sendmessage(e);
+  }}
+>
+  send
+</button>
+</div> */
+}

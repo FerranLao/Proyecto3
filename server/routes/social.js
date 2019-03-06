@@ -59,18 +59,20 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
   Invitation.findById(id).then(e => {
     const { type, from, to } = e;
     if (type == "Friend") {
-      Chat.create({}).then(chat=> {
-        console.log(chat)
-        Friends.findByIdAndUpdate(e.for, { accepted: true,chat:chat._id },{new:true})
+      Chat.create({}).then(chat => {
+        console.log(chat);
+        Friends.findByIdAndUpdate(
+          e.for,
+          { accepted: true, chat: chat._id },
+          { new: true }
+        )
           .then(friend =>
             User.findOneAndUpdate(to, { push: { friends: friend } })
           )
           .then(e => {
-            Invitation.findByIdAndDelete(id);
-          })
-          .then(e => {
-            console.log("accepted");
-            res.json("done");
+            Invitation.findByIdAndDelete(id).then(e => {
+              res.json("done");
+            });
           });
       });
     }

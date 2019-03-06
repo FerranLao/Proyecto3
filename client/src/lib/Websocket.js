@@ -15,6 +15,7 @@ export class WebsocketConnection {
     });
   }
   disconnect(id) {
+    console.log("disconected")
     this.socket.removeListener(id);
     this.socket = "";
   }

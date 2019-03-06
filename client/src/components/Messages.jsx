@@ -3,6 +3,7 @@ import React from "react";
 export const Messages = ({ data, me, member }) => {
   return (
     <React.Fragment>
+      
       <div className={me ? "me" : "notme"}>
         <div className="infochat">
           <img className="chatimg" src={member.image} alt={member.username} />

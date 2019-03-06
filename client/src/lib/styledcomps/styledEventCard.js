@@ -21,7 +21,7 @@ export const StyledEventCard = styled.div`
   .content {
     padding-top: 10px;
     height: 19vh;
-    overflow-y: scroll;
+
   }
   .slideThree {
     width: 120px;

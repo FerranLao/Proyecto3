@@ -43,7 +43,6 @@ class _EventPage extends React.Component {
   addfriend = id => {
     const { dispatch } = this.props;
     SocialApi.addfriend(id).then(({ data }) => {
-      console.log(data);
       dispatch({
         type: "LOGIN",
         user: data
@@ -53,7 +52,6 @@ class _EventPage extends React.Component {
 
   join() {
     const { _id } = this.state.event;
-
     Events.join(_id).then(({ data }) => {
       console.log(data);
       this.setState({ event: data, inparty: true });
@@ -73,9 +71,8 @@ class _EventPage extends React.Component {
   }
 
   render() {
-    const { event, inparty} = this.state;
+    const { event, inparty } = this.state;
     const { game, name, description, creator, party, chat } = event;
-   
     return (
       <div>
         <StyledEventCard>
@@ -85,7 +82,6 @@ class _EventPage extends React.Component {
               <h1>{name}</h1>
               <h2>{description}</h2>
               <p>created by : {creator ? creator.username : null}</p>
-
               <StyledUserList>
                 {party.map((e, i) => (
                   <UserminiCard

@@ -83,7 +83,7 @@ router.post("/joinparty", isLoggedIn(), (req, res, next) => {
     .populate("game event party creator")
     .then(e => {
       console.log(e.party.length,e.size,e.isFull)
-      if (e.size >= e.party.length) {
+      if (e.size <= e.party.length) {
         Events.findByIdAndUpdate(id, { isFull: true }).then(e =>
           console.log("party full")
         );

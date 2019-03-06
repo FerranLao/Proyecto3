@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Pagination = ({ pages, actual, func }) => {
-  const arr = new Array(pages);
+  const arr =pages ? new Array(pages):[];
   return (
     <nav
       className="pagination is-centered"

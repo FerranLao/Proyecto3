@@ -10,32 +10,51 @@ export class _Chat extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: ""
+      message: "",
+      chatid: ""
     };
   }
 
   componentDidMount() {
-    const { chatid, dispatch } = this.props;
-    Chatapi.getchat(chatid).then(({ data }) => dispatch(getChat(data)));
+    this.getchat();
   }
+
+
+  getchat = () => {
+    const { chatid, dispatch } = this.props;
+    this.setState({ chatid });
+    Chatapi.getchat(chatid).then(({ data }) => {
+      dispatch(getChat(data));
+      this.scrollbottom();
+    });
+  };
+
   componentWillUnmount() {
-    const { chatid } = this.props;
+    const { chatid, dispatch } = this.props;
     Chatapi.exitchat(chatid);
+    dispatch(getChat([]));
   }
   handlechange = ({ target }) => {
     this.setState({ message: target.value });
   };
 
+  scrollbottom() {
+    const chat = document.querySelector(".chatcontainer");
+    chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+  }
+
   sendmessage = e => {
     const { message } = this.state;
     const { chatid, user } = this.props;
-    Chatapi.sendMessage(message, chatid, user._id);
+    Chatapi.sendMessage(message, chatid, user._id).then(e =>
+      this.scrollbottom()
+    );
     this.setState({ message: "" });
   };
 
   member(from) {
     const { members } = this.props;
-    let member;
+    let member = {};
     members.forEach(e => {
       if (e._id === from) {
         member = e;
@@ -50,14 +69,16 @@ export class _Chat extends React.Component {
       <StyledChat>
         <div>
           <div className="chatcontainer scroll scrollbar">
-            {chat.map(e => (
-              <Messages
-                me={e.from === user._id}
-                member={this.member(e.from)}
-                data={e}
-                key={e._id}
-              />
-            ))}
+            {chat.map(e =>
+              e ? (
+                <Messages
+                  me={e.from === user._id}
+                  member={this.member(e.from)}
+                  data={e}
+                  key={e._id}
+                />
+              ) : null
+            )}
           </div>
           <Input func={this.handlechange} data={message} />
           <button

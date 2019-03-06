@@ -26,7 +26,7 @@ export const GameCard = ({ game, index = 0, create = false, myevent }) => {
         ) : (
           <React.Fragment>
               <h4 className="movie-card__info">{game.description}</h4>
-            <p>{game.party.length}/{game.size}</p>
+            <p className="movie-card__info">{game.party.length}/{game.size}</p>
 
             <Link
               to={`/events/${game._id}`}

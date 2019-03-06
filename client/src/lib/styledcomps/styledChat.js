@@ -52,13 +52,18 @@ export const StyledChat = styled.div`
   .me,
   .notme {
     display: flex;
-    justify-content: space-between;
-    width: 98%;
+    justify-content: space-around;
     margin: 1.5%;
     border-radius: 15px;
+    width:98%  
   }
+
   .me {
+    flex-direction:row-reverse;
     background: #00ce71;
+    .message{
+      justify-content:flex-start;
+    }
   }
   .notme {
     background-color: #008ebd;

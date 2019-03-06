@@ -8,7 +8,6 @@ const instance = axios.create({
 
 export class SocialApi {
   static addfriend(id) {
-    console.log("eeeii");
     return instance.post("/addfriend", { id }).then(e => {
       console.log(e);
       return e;
@@ -22,6 +21,7 @@ export class SocialApi {
   static getinvites() {
     return instance.get("/getinvites").then(e => e);
   }
+  
   static getmyinvites() {
     return instance.get("/getmyinvites").then(e => e);
   }

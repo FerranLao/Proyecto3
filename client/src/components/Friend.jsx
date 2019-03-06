@@ -4,7 +4,7 @@ export const Friend = ({ user,index,select }) => {
   const { image, username } = user;
   return (
     <React.Fragment>
-      {user[0] ? (
+      {user ? (
         <div className="friend" onClick={()=>select(index)}>
           <img src={image} alt={username} />
           <p>{username}</p>

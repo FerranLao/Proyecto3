@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const StyledResults = styled.div`
-  height: 70vh;
+  height: 68vh;
   overflow-y: scroll;
   @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
 

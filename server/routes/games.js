@@ -6,6 +6,11 @@ const { regularExp } = require("../bin/helper");
 const { isLoggedIn } = require("../middlewares/IsLogged");
 const SteamUser = require("../models/SteamUser");
 
+router.get("/getall",(req,res)=>{
+  SteamGames.find().then(e=>res.json(e))
+})
+
+
 router.post("/getpage", isLoggedIn(), (req, res, next) => {
   const { filter, page } = req.body;
   const reg = regularExp(filter);

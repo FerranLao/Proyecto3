@@ -16,42 +16,40 @@ class _Friends extends React.Component {
   }
 
   componentDidMount() {
-    const { user } = this.props;
     SocialApi.getfriends().then(({ data }) => {
-     
-      this.setState({ friendlist:data, selected: data[0] });
+      this.setState({ friendlist: data, selected: data[0] });
     });
   }
 
   selectfriend = index => {
-
-    this.setState({ selected: this.state.friendlist[index] });
-    console.log(this.state.selected)
+    const selected = this.state.friendlist[index];
+    new Promise((resolve) => {
+      resolve(this.setState({ selected: null }));
+    }).then(e => this.setState({ selected }));
+    ;
   };
 
-  notme(arr){
-    const {_id}=this.props.user
-    let notme
+  notme(arr) {
+    const { _id } = this.props.user;
+    let notme;
     arr.forEach(e => {
-      if(e._id!==_id) {
-        notme=e
-      }    
+      if (e._id !== _id) {
+        notme = e;
+      }
     });
-    console.log(notme)
-    return notme
+    return notme;
   }
 
   render() {
     const { friendlist, selected } = this.state;
-    const {user}=this.props
-
+    const { user } = this.props;
     return (
       <React.Fragment>
         <StyledFriends>
           <div className="friends">
             {friendlist
               ? friendlist.map((e, i) =>
-                  e.users[0] ? (
+                  this.notme(e.users) ? (
                     <Friend
                       key={i}
                       index={i}
@@ -66,7 +64,11 @@ class _Friends extends React.Component {
             {selected ? <UserBigCard user={selected} /> : null}
           </div>
         </StyledFriends>
-        {selected ? <Chat chatid={selected.chat} members={[this.notme(selected.users),user]} /> : null}
+        <div>
+          {selected ? (
+            <Chat chatid={selected.chat} members={selected.users} />
+          ) : null}
+        </div>
       </React.Fragment>
     );
   }

@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 export const GameCard = ({ game, index = 0, create = false, myevent }) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
+  let date = game.date ? game.date.split("T1") : undefined;
+  console.log(date)
+  date = date
+    ? `${date[0]} , ${date[1]
+        .split(".")[0]
+        .substring(0, date[1].split(".")[0].length - 3)}`
+    : null;
   return (
     <div className={"movie-card index" + index}>
       <div className="movie-card__overlay" />
@@ -25,8 +32,12 @@ export const GameCard = ({ game, index = 0, create = false, myevent }) => {
           )
         ) : (
           <React.Fragment>
-              <h4 className="movie-card__info">{game.description}</h4>
-            <p className="movie-card__info">{game.party.length}/{game.size}</p>
+            <div className="event-card">
+            <h4 className="movie-card__info">{game.description}</h4>
+            <p className="movie-card__info">
+              {game.party.length}/{game.size}
+            </p>
+            <p className="movie-card__info">{date}</p>
 
             <Link
               to={`/events/${game._id}`}
@@ -34,6 +45,7 @@ export const GameCard = ({ game, index = 0, create = false, myevent }) => {
             >
               {myevent === "/myevents" ? "Check" : "Join?"}
             </Link>
+            </div>
           </React.Fragment>
         )}
       </div>

@@ -4,7 +4,6 @@ import { AddSteam } from "../components/AddSteam";
 import { Games } from "../lib/Games";
 import { Input } from "../components/Input";
 import { Resultbox } from "../components/Resultbox";
-//import _ from "lodash";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { Pagination } from "../components/Pagination";
 
@@ -55,7 +54,7 @@ class _NewEvent extends React.Component {
     return (
       <div>
         {user.SteamUser ? (
-          <label class="checkbox">
+          <label className="checkbox">
             <input type="checkbox" onClick={() => this.owngames()} />
             See only my games
           </label>

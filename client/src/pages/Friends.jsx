@@ -10,7 +10,7 @@ class _Friends extends React.Component {
   constructor() {
     super();
     this.state = {
-      friendlist: null,
+      friendlist: [],
       selected: null
     };
   }
@@ -41,7 +41,6 @@ class _Friends extends React.Component {
 
   render() {
     const { friendlist, selected } = this.state;
-    const { user } = this.props;
     return (
       <React.Fragment>
         <StyledFriends>

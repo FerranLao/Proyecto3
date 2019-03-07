@@ -99,27 +99,3 @@ export const Chat = connect(state => ({ user: state.user, chat: state.chat }))(
   _Chat
 );
 
-{
-  /* <div>
-<div className="chatcontainer scroll scrollbar">
-  {chat.map(e =>
-    e ? (
-      <Messages
-        me={e.from === user._id}
-        member={this.member(e.from)}
-        data={e}
-        key={e._id}
-      />
-    ) : null
-  )}
-</div>
-<Input func={this.handlechange} data={message} />
-<button
-  onClick={e => {
-    this.sendmessage(e);
-  }}
->
-  send
-</button>
-</div> */
-}

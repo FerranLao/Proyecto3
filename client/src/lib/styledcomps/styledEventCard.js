@@ -12,23 +12,21 @@ export const StyledEventCard = styled.div`
     }
   }
   .eventform {
-    height:80%;
+    height: 95%;
     width: 45%;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .eventdata{
-    height:120vh; 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-
+  .eventdata {
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .content {
     padding-top: 10px;
     height: 19vh;
-
   }
   .slideThree {
     width: 120px;

@@ -170,6 +170,9 @@ export const StyledResults = styled.div`
   .movie-card__header {
     margin-bottom: 2em;
   }
+  .event-card{
+    margin-top:-2em
+  }
   .movie-card__title {
     color: #ffffff;
     margin-bottom: 0.25em;

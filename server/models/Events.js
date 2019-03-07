@@ -13,8 +13,9 @@ const EventsSchema = new Schema(
     description: { type: String, default: "No description provided" },
     game: { type: Schema.Types.ObjectId, ref: "SteamGames", required: true },
     chat: { type: Schema.Types.ObjectId, ref: "Chat" },
-    Schedule: { type: Date, default: Date.now },
-    private: { type: Boolean, default: false }
+    date: { type: Date },
+    time:Number,
+    private: { type: Boolean, default: false },
   },
   {
     timestamps: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { rejects } from "assert";
+
 
 export const Invite = ({ invite,accept,reject }) => {
   console.log(invite);

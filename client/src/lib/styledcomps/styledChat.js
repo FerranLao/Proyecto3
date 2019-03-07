@@ -66,6 +66,7 @@ export const StyledChat = styled.div`
     border-radius: 50%;
     background-color: #f3f3f3;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+
   }
   .chat ul li .date {
     font-size: 14px;

@@ -68,15 +68,15 @@ export class _Chat extends React.Component {
     return (
       <StyledChat>
         <section>
-          <div class="chat ">
+          <div className="chat ">
             <ul className="chatcontainer  scroll scrollbar">
-              {chat.map(e =>
+              {chat.map((e,i) =>
                 e ? (
                   <Messages
                     me={e.from === user._id}
                     member={this.member(e.from)}
                     data={e}
-                    key={e._id}
+                    key={i}
                   />
                 ) : null
               )}

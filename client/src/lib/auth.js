@@ -19,7 +19,7 @@ export class AuthAPI {
   }
 
   static login(username, password) {
-    console.log(username)
+
     return instance
       .post("/login", { username, password })
       .then(res => res)

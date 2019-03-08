@@ -19,9 +19,8 @@ router.get("/getfriends", isLoggedIn(), (req, res, next) => {
 
 router.get("/getinvites", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
-  console.log(_id)
   Invitation.find({ to: _id })
-    .populate("from")
+    .populate("from to")
     .then(e =>{ 
       res.json(e)});
 });
@@ -78,6 +77,8 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
             });
           });
       });
+    }else{
+      Invitation.findByIdAndDelete(id).then(e=>res.json(e.to))
     }
   });
 });
@@ -95,6 +96,8 @@ router.post("/reject", isLoggedIn(), (req, res, next) => {
           })
         );
       });
+    }else{
+      Invitation.findByIdAndDelete(id)
     }
   });
 });
@@ -106,7 +109,7 @@ router.post("/getSteamUser", isLoggedIn(), (req, res, next) => {
 
 router.post("/inviteParty", isLoggedIn(), (req, res, next) => {
   const { to, event } = req.body;
-  Invitation.findOne({ to, for: event,type:"Party"})
+  Invitation.findOne({ from:to, for: event,type:"Party"})
     .populate("for from")
     .then(invite => {
   
@@ -117,6 +120,7 @@ router.post("/inviteParty", isLoggedIn(), (req, res, next) => {
           from: req.user._id,
           type: "Party"
         }).then(e => { 
+          console.log(e)
           res.json(e)});
       } else {
         res.json({ message: "already invited" });

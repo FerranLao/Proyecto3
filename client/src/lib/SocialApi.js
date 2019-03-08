@@ -38,7 +38,8 @@ export class SocialApi {
     return instance.post("/getSteamUser",{id}).then(e=>e)
   }
 
-  static inviteParty(event,to){
+  
+  static inviteParty(to,event){
     return instance.post("/inviteParty",{event,to}).then(e=>e)
   }
 }

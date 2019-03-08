@@ -15,7 +15,7 @@ export const Invite = ({ invite,accept,reject }) => {
         <span className="date" />
 
         <div className="buttons">
-          <div className="accept" onClick={()=>accept(_id)}>
+          <div className="accept" onClick={()=>accept(_id,invite.for)}>
             <i className="fas fa-check" />
           </div>
           <div className="reject" onClick={()=>reject(_id)}>

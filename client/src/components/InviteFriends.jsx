@@ -34,8 +34,11 @@ class _InviteFriends extends React.Component {
       SocialApi.inviteParty(id,event).then(e=>{console.log(e)
       })
   };
+
+  
   render() {
     const { friends } = this.state;
+    console.log(friends)
     return (
       <StyledModal>
         <div className="buttonmodal">

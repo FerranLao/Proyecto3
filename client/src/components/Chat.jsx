@@ -23,6 +23,7 @@ export class _Chat extends React.Component {
     const { chatid, dispatch } = this.props;
     this.setState({ chatid });
     Chatapi.getchat(chatid).then(({ data }) => {
+      console.log(data)
       dispatch(getChat(data));
       this.scrollbottom();
     });

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { SocialApi } from "../lib/SocialApi";
 import { Invite } from "../components/Invite";
 import { StyledInvite } from "../lib/styledcomps/styledInvite";
-
+import {Nothingfound} from "../components/Nothingfound"
 class _Invitations extends React.Component {
   constructor() {
     super();
@@ -19,14 +19,18 @@ class _Invitations extends React.Component {
 
   getinvites() {
     SocialApi.getinvites().then(({ data }) => {
-      console.log(data)
       this.setState({ invites: data });
     });
   }
 
   accept = id => {
+    const { history } = this.props;
     SocialApi.acceptinvite(id).then(e => {
-      this.getinvites();
+      if (e.data === "done") {
+        this.getinvites();
+      } else {
+        history.push(`/events/${e.data}`);
+      }
     });
   };
 
@@ -38,10 +42,11 @@ class _Invitations extends React.Component {
 
   render() {
     const { invites } = this.state;
+
     return (
       <StyledInvite>
         <section className="section">
-          <div className="section__container">
+         {invites.length !==0 ? <div className="section__container">
             {invites.map(e => (
               <Invite
                 invite={e}
@@ -50,7 +55,8 @@ class _Invitations extends React.Component {
                 reject={this.reject}
               />
             ))}
-          </div>
+          </div>:
+        <Nothingfound url="https://media.giphy.com/media/3oriff4xQ7Oq2TIgTu/giphy.gif">Nothing to see here</Nothingfound>}
         </section>
       </StyledInvite>
     );

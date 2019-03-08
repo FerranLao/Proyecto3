@@ -3,8 +3,8 @@ import { StyledUserMiniCard } from "../lib/styledcomps/UserMinicard";
 
 
 export const UserminiCard = ({ user, friend, addfriend }) => {
-  console.log(friend);
   const { username, image, _id } = user;
+
   return (
     <StyledUserMiniCard>
       <li className="friend flip">

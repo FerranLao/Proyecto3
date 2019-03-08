@@ -5,7 +5,6 @@ export const GameCard = ({ game, index = 0, create = false, myevent }) => {
   const { genres, name } = game;
   const genresnames = genres ? genres.map(e => e.description) : undefined;
   let date = game.date ? game.date.split("T1") : undefined;
-  console.log(date)
   date = date
     ? `${date[0]} , ${date[1]
         .split(".")[0]

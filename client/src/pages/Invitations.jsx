@@ -19,6 +19,7 @@ class _Invitations extends React.Component {
 
   getinvites() {
     SocialApi.getinvites().then(({ data }) => {
+      console.log(data)
       this.setState({ invites: data });
     });
   }

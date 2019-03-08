@@ -5,6 +5,7 @@ import { Input } from "../components/Input";
 import { Events } from "../lib/Events";
 import { Resultbox } from "../components/Resultbox";
 import { Pagination } from "../components/Pagination";
+import { Nothingfound } from "../components/Nothingfound";
 
 class _EventSearch extends React.Component {
   constructor() {
@@ -53,7 +54,13 @@ class _EventSearch extends React.Component {
       <div>
         {user.SteamUser ? null : <AddSteam />}
         <Input func={this.filter} />
-        <Resultbox gamearray={events} event myevent={pathname} />
+        {events.length !== 0 ? (
+          <Resultbox gamearray={events} event myevent={pathname} />
+        ) : (
+          <Nothingfound url="https://media.giphy.com/media/NS7gPxeumewkWDOIxi/giphy.gif">
+            Nothing found
+          </Nothingfound>
+        )}
         <Pagination
           func={this.gotopage}
           pages={Math.ceil(count / 10)}

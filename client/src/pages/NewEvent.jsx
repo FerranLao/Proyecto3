@@ -6,6 +6,7 @@ import { Input } from "../components/Input";
 import { Resultbox } from "../components/Resultbox";
 import { LoadingScreen } from "../components/LoadingScreen";
 import { Pagination } from "../components/Pagination";
+import { Nothingfound } from "../components/Nothingfound";
 
 class _NewEvent extends React.Component {
   constructor() {
@@ -64,7 +65,7 @@ class _NewEvent extends React.Component {
         <Input func={this.filter} />
         {games ? (
           <React.Fragment>
-            <Resultbox gamearray={games} />
+            {games.length!==0?<Resultbox gamearray={games} />:<Nothingfound url="https://media.giphy.com/media/NS7gPxeumewkWDOIxi/giphy.gif">Nothing found</Nothingfound>}
             <Pagination
               func={this.gotopage}
               pages={Math.ceil(count / 10)}

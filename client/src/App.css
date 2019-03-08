@@ -50,3 +50,15 @@ body{
   margin-left:-5%;
   margin-right: -4%;
 }
+.alone{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.alone img{
+  width: 50%
+}

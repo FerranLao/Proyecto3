@@ -19,10 +19,10 @@ router.get("/getfriends", isLoggedIn(), (req, res, next) => {
 
 router.get("/getinvites", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
+  console.log(_id)
   Invitation.find({ to: _id })
     .populate("from")
     .then(e =>{ 
-      console.log(e)
       res.json(e)});
 });
 
@@ -106,18 +106,17 @@ router.post("/getSteamUser", isLoggedIn(), (req, res, next) => {
 
 router.post("/inviteParty", isLoggedIn(), (req, res, next) => {
   const { to, event } = req.body;
-  console.log(event);
   Invitation.findOne({ to, for: event,type:"Party"})
     .populate("for from")
     .then(invite => {
-      console.log(event);
+  
       if (!invite) {
         Invitation.create({
-          to,
+          to:to,
           for: event,
           from: req.user._id,
           type: "Party"
-        }).then(e => {          
+        }).then(e => { 
           res.json(e)});
       } else {
         res.json({ message: "already invited" });

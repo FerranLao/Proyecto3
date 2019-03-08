@@ -5,6 +5,7 @@ import { Friend } from "../components/Friend";
 import { StyledFriends } from "../lib/styledcomps/styledFriends";
 import { UserBigCard } from "../components/UserBigCard";
 import { Chat } from "../components/Chat";
+import { Nothingfound } from "../components/Nothingfound";
 
 class _Friends extends React.Component {
   constructor() {
@@ -41,30 +42,36 @@ class _Friends extends React.Component {
 
   render() {
     const { friendlist, selected } = this.state;
+    console.log(friendlist);
     return (
       <React.Fragment>
-        <StyledFriends>
-          <div className="friends">
-            {friendlist
-              ? friendlist.map((e, i) =>
-                  this.notme(e.users) ? (
-                    <Friend
-                      key={i}
-                      index={i}
-                      select={this.selectfriend}
-                      user={this.notme(e.users)}
-                    />
-                  ) : null
-                )
-              : null}
-          </div>
-        </StyledFriends>
+        {friendlist.length !== 0 ? (
+          <StyledFriends>
+            <div className="friends">
+              {friendlist
+                ? friendlist.map((e, i) =>
+                    this.notme(e.users) ? (
+                      <Friend
+                        key={i}
+                        index={i}
+                        select={this.selectfriend}
+                        user={this.notme(e.users)}
+                      />
+                    ) : null
+                  )
+                : null}
+            </div>
+          </StyledFriends>
+        ) : (
+          <Nothingfound url="https://media.giphy.com/media/VfyC5j7sR4cso/giphy.gif">
+            No friends found
+          </Nothingfound>
+        )}
         <div className="bottombox">
           <div className="bigcard">
-            {
-              selected ?<UserBigCard user={this.notme(selected.users)}></UserBigCard>:null
-            }
-            
+            {selected ? (
+              <UserBigCard user={this.notme(selected.users)} />
+            ) : null}
           </div>
           <div className="chatspace">
             {selected ? (

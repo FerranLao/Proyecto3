@@ -71,6 +71,7 @@ export const StyledModal = styled.div`
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
   }
+  
   .modalbg:target .dialog {
     top: -20px;
     -moz-transition: all 0.8s ease-out;

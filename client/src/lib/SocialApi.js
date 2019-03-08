@@ -33,7 +33,12 @@ export class SocialApi {
   static rejectinvite(id) {
     return instance.post("/reject", { id }).then(e => e);
   }
+
   static getSteamUser(id){
     return instance.post("/getSteamUser",{id}).then(e=>e)
+  }
+
+  static inviteParty(event,to){
+    return instance.post("/inviteParty",{event,to}).then(e=>e)
   }
 }

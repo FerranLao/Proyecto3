@@ -4,12 +4,13 @@ export const StyledChat = styled.div`
   body {
     background-color: #f3f3f3;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width:100%;
+    width: 100%;
   }
 
-  section,.form {
+  section,
+  .form {
     width: 90%;
-    margin:0 auto;
+    margin: 0 auto;
   }
   .chatcontainer {
     width: 100%;
@@ -18,32 +19,32 @@ export const StyledChat = styled.div`
     border-radius: 10px;
     background-color: #bababa;
     ::-webkit-scrollbar {
-    width: 12px;
-  }
+      width: 12px;
+    }
 
-  ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-track-piece {
-  }
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track-piece {
+    }
 
-  ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: rgba(255, 0, 0, 0.8);
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-  }
-  ::-webkit-scrollbar-corner {
-  }
-  ::-webkit-resizer {
-  }
-  ::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255, 0, 0, 0.4);
-  }
+    ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: rgba(255, 0, 0, 0.8);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+    ::-webkit-scrollbar-corner {
+    }
+    ::-webkit-resizer {
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+      background: rgba(255, 0, 0, 0.4);
+    }
   }
 
   .chat ul {
@@ -66,7 +67,6 @@ export const StyledChat = styled.div`
     border-radius: 50%;
     background-color: #f3f3f3;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
   }
   .chat ul li .date {
     font-size: 14px;
@@ -170,10 +170,9 @@ export const StyledChat = styled.div`
     left: 0;
     margin: 0 0 0 -15px;
   }
-  .username{
-    text-align:center;
+  .username {
+    text-align: center;
   }
- 
 `;
 // .chatcontainer {
 //   width: 100%;
@@ -182,7 +181,6 @@ export const StyledChat = styled.div`
 //   border-radius: 10px;
 //   background-color: #bababa;
 
-  
 // }
 // .chatimg {
 //   width: 100%;

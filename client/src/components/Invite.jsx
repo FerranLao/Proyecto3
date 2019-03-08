@@ -1,5 +1,5 @@
 import React from "react";
-
+                        
 
 export const Invite = ({ invite,accept,reject }) => {
   console.log(invite);

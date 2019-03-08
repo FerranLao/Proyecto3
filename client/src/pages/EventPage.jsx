@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { UserminiCard } from "../components/UserminiCard";
 import { StyledUserList } from "../lib/styledcomps/styledUserList";
 import { SocialApi } from "../lib/SocialApi";
-
+import { InviteFriends } from "../components/InviteFriends";
 class _EventPage extends React.Component {
   constructor() {
     super();
@@ -72,7 +72,8 @@ class _EventPage extends React.Component {
 
   render() {
     const { event, inparty } = this.state;
-    const { game, name, description, creator, party, chat } = event;
+    const { game, name, description, creator, party, chat,_id } = event;
+
     return (
       <div>
         <StyledEventCard>
@@ -83,6 +84,11 @@ class _EventPage extends React.Component {
                 <h1>{name}</h1>
                 <h2>{description}</h2>
                 <p>created by : {creator ? creator.username : null}</p>
+              </div>
+              <div>
+              <div>
+            {inparty ? <InviteFriends event={_id}/>:null}
+          </div>
               </div>
               <div className="eventbox">
                 <div className="userlist">

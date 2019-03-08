@@ -6,7 +6,9 @@ export const StyledUserList = styled.ul`
   height: 30vh;
   margin: 0;
   overflow-y: scroll;
-
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
 
   ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
@@ -31,6 +33,7 @@ export const StyledUserList = styled.ul`
   ::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(255, 0, 0, 0.4);
   }
+
   #friend-list {
     display: block;
     margin: 0;
@@ -39,11 +42,10 @@ export const StyledUserList = styled.ul`
     height: 100%;
     background: none;
     list-style-type: none;
-    
   }
   .friendbutton {
-    display:block;
-    opacity:0;
+    display: block;
+    opacity: 0;
   }
   .friend {
     color: whitesmoke;
@@ -58,9 +60,9 @@ export const StyledUserList = styled.ul`
   }
   .friend:hover {
     .friendbutton {
-      opacity:1;
+      opacity: 1;
     }
-    background-color:#393939;
+    background-color: #393939;
   }
 
   .friend img {
@@ -77,11 +79,7 @@ export const StyledUserList = styled.ul`
     font-size: 18px;
   }
 
- 
-
   .friend.selected img {
     border-color: white;
   }
-
- 
 `;

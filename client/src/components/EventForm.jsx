@@ -3,6 +3,7 @@ import { Input } from "./Input";
 import { Events } from "../lib/Events";
 import { Redirect } from "react-router";
 
+
 export class EventForm extends React.Component {
   constructor() {
     super();
@@ -89,26 +90,35 @@ export class EventForm extends React.Component {
           infoname="size"
           func={this.handleChange}
         />
-        <div>
-          <Input type="date" func={this.handledate} infoname="Choose a date" />
-          <Input
-            type="number"
-            func={this.handledate}
-            infoname="Choose a hour"
-          />
+        <div className="time">
+          <div>
+            <Input
+              type="date"
+              func={this.handledate}
+              infoname="Choose a date"
+            />
+          </div>
+          <div>
+            <Input
+              type="number"
+              func={this.handledate}
+              infoname="Choose a hour"
+            />
+          </div>
         </div>
-
-        <div className="slideThree">
-          <input
-            onClick={() => {
-              this.handleCheckbox();
-            }}
-            type="checkbox"
-            value="None"
-            id="slideThree"
-            name="check"
-          />
-          <label htmlFor="slideThree" />
+        <div>
+          <div className="slideThree">
+            <input
+              onClick={() => {
+                this.handleCheckbox();
+              }}
+              type="checkbox"
+              value="None"
+              id="slideThree"
+              name="check"
+            />
+            <label htmlFor="slideThree" />
+          </div>
         </div>
 
         <button

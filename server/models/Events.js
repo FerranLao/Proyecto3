@@ -15,7 +15,7 @@ const EventsSchema = new Schema(
     chat: { type: Schema.Types.ObjectId, ref: "Chat" },
     date: { type: Date },
     time:Number,
-    private: { type: Boolean, default: false },
+    private: { type: Boolean, default: false }
   },
   {
     timestamps: {

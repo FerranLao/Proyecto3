@@ -6,9 +6,7 @@ const User = require("../models/User");
 const Chat = require("../models/Chat");
 const Friends = require("../models/Friends");
 const Invitation = require("../models/Invitation");
-const SteamUser = require("../models/SteamUser")
-
-
+const SteamUser = require("../models/SteamUser");
 
 router.get("/getfriends", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
@@ -22,8 +20,10 @@ router.get("/getfriends", isLoggedIn(), (req, res, next) => {
 router.get("/getinvites", isLoggedIn(), (req, res, next) => {
   const { _id } = req.user;
   Invitation.find({ to: _id })
-    .populate("for from")
-    .then(e => res.json(e));
+    .populate("from")
+    .then(e =>{ 
+      console.log(e)
+      res.json(e)});
 });
 
 router.get("/getmyinvites", isLoggedIn(), (req, res, next) => {
@@ -99,9 +99,29 @@ router.post("/reject", isLoggedIn(), (req, res, next) => {
   });
 });
 
-router.post("/getSteamUser",isLoggedIn(),(req,res,next)=>{
+router.post("/getSteamUser", isLoggedIn(), (req, res, next) => {
   const { id } = req.body;
-  SteamUser.findById(id).then(e=>res.json(e))
-})
+  SteamUser.findById(id).then(e => res.json(e));
+});
 
+router.post("/inviteParty", isLoggedIn(), (req, res, next) => {
+  const { to, event } = req.body;
+  console.log(event);
+  Invitation.findOne({ to, for: event,type:"Party"})
+    .populate("for from")
+    .then(invite => {
+      console.log(event);
+      if (!invite) {
+        Invitation.create({
+          to,
+          for: event,
+          from: req.user._id,
+          type: "Party"
+        }).then(e => {          
+          res.json(e)});
+      } else {
+        res.json({ message: "already invited" });
+      }
+    });
+});
 module.exports = router;

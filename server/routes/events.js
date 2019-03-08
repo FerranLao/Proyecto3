@@ -75,17 +75,20 @@ router.post("/getOwnPage", isLoggedIn(), (req, res, next) => {
   const reg = regularExp(filter);
   const actualtime = Number(new Date().getTime());
 
-  Events.find({ party: { $in: _id }, name: reg,time: { $gte: actualtime } })
+  Events.find({ party: { $in: _id }, name: reg, time: { $gte: actualtime } })
     .skip(page * 10)
     .limit(page * 10 + 10)
     .populate("game")
     .then(events => {
-      Events.count({ party: { $in: _id }, name: reg ,time: { $gte: actualtime }}).then(count => {
+      Events.count({
+        party: { $in: _id },
+        name: reg,
+        time: { $gte: actualtime }
+      }).then(count => {
         res.json({ events, count });
       });
     })
     .catch(e => {
-      console.log(e);
       res.json({ message: "Something went wrong" });
     });
 });
@@ -108,5 +111,6 @@ router.post("/joinparty", isLoggedIn(), (req, res, next) => {
       res.json(e);
     });
 });
+
 
 module.exports = router;

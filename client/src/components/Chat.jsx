@@ -70,7 +70,7 @@ export class _Chat extends React.Component {
       <StyledChat>
         <section>
           <div className="chat ">
-            <ul className="chatcontainer  scroll scrollbar">
+            <ul  onChange={()=>{this.scrollbottom()}} className="chatcontainer  scroll scrollbar">
               {chat.map((e,i) =>
                 e ? (
                   <Messages

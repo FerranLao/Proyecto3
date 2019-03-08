@@ -14,6 +14,7 @@ import { EventPage } from "./pages/EventPage";
 import { EventSearch } from "./pages/EventSearch";
 import { Friends } from "./pages/Friends";
 import { Invitations } from "./pages/Invitations";
+import { Aboutme } from "./pages/Aboutme";
 
 class _App extends Component {
   render() {
@@ -50,6 +51,7 @@ class _App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/aboutme" component={Aboutme} />
             </Switch>
           )}
         </div>

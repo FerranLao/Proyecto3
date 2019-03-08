@@ -62,7 +62,9 @@ class _NewEvent extends React.Component {
         ) : (
           <AddSteam />
         )}
+        <div className="container">
         <Input func={this.filter} />
+        </div>
         {games ? (
           <React.Fragment>
             {games.length!==0?<Resultbox gamearray={games} />:<Nothingfound url="https://media.giphy.com/media/NS7gPxeumewkWDOIxi/giphy.gif">Nothing found</Nothingfound>}

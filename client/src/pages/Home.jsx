@@ -1,16 +1,24 @@
 import React from "react";
-import { Usercard } from "../components/Usercard";
 import { connect } from "react-redux";
 import { StyledHome } from "../lib/styledcomps/styledHome";
-
+import { Link } from "react-router-dom";
 
 const _Home = ({ user }) => {
   return (
     <StyledHome>
-      <div>
+     {user?
+       
+       <div>
         <h2>Welcome Home</h2>
-        <h1>{user ? user.username : null}</h1>
+        {user ? <h1>{user.username }</h1>: null}
+      </div>:
+    <div>
+      <h2>Join Us</h2>
+      <div>
+      <Link  to="/signup"className="button is-success">Singup</Link>
       </div>
+
+    </div>}
     </StyledHome>
   );
 };

@@ -140,6 +140,7 @@ export const StyledChat = styled.div`
     margin: -20px 10px 0 0;
   }
   .chat ul li.other .message {
+    
     margin: 0 90px 0 0;
   }
   .chat ul li.other .message:before {
@@ -162,6 +163,7 @@ export const StyledChat = styled.div`
     margin: 0 0 0 90px;
   }
   .chat ul li.you .message:before {
+    
     margin: -9px 0 0 -16px;
     left: 0;
   }

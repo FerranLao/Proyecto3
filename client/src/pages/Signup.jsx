@@ -53,7 +53,8 @@ class SignupForm extends React.Component {
     const { username, password } = this.state.info;
     const { error } = this.state;
     return (
-      <div className="container">
+      <div className="logincontainer">
+      <div className="inputscontainer">
         <Input data={username} infoname="username" func={this.handleChange} />
         <Input
           data={password}
@@ -85,6 +86,7 @@ class SignupForm extends React.Component {
             </div>
           </section>
         ) : null}
+        </div>
       </div>
     );
   }

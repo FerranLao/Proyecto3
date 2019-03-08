@@ -43,18 +43,16 @@ const _Nav = ({ user, dispatch }) => {
                 </ul>
               </li>
               <li>
-                Groups
-                <ul>
-                  <li>
-                    <Link to="/friends">friends</Link>
-                  </li>
-                </ul>
+                <Link to ="/friends">Friends</Link>
+                
               </li>
               <li>
                 Account
                 <ul>
                   <li>
-                    <Link to="/invites" className="backgroundred">Invites</Link>
+                    <Link to="/invites" className="backgroundred">
+                      Invites
+                    </Link>
                   </li>
                   <li>
                     <Link
@@ -73,10 +71,16 @@ const _Nav = ({ user, dispatch }) => {
           ) : (
             <React.Fragment>
               <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
                 <Link to="/signup">signup</Link>
               </li>
               <li>
                 <Link to="/login">login</Link>
+              </li>
+              <li>
+                <Link to="/aboutme">about me</Link>
               </li>
             </React.Fragment>
           )}

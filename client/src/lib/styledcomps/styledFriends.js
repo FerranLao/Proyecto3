@@ -44,6 +44,7 @@ export const StyledFriends = styled.div`
     flex-direction: column;
     margin: 2%;
     width: 15%;
+    max-height:300px;
     border-radius: 15px;
     border: 1px solir grey;
     background-color: #494944;

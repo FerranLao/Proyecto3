@@ -38,7 +38,8 @@ export class Loginform extends React.Component {
     const { username, password } = this.state.info;
     const { error } = this.state;
     return (
-      <div className="container">
+      <div className="logincontainer">
+      <div className="inputscontainer">
         <Input data={username} infoname="username" func={this.handleChange} />
         <Input
           data={password}
@@ -46,9 +47,12 @@ export class Loginform extends React.Component {
           infoname="password"
           func={this.handleChange}
         />
-        <button onClick={() => this.submit()} className="button is-primary">
+     
+        <button onClick={() => this.submit()} className="button is-primary ">
           Login
         </button>
+       
+       
         {error ? (
           <section className="hero is-warning">
             <div className="hero-body">
@@ -59,6 +63,7 @@ export class Loginform extends React.Component {
             </div>
           </section>
         ) : null}
+        </div>
       </div>
     );
   }

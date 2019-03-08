@@ -76,3 +76,25 @@ body{
 .alone img{
   width: 50%
 }
+.unloged{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy5ZgMND4aGm64FbzLoI0aktTyS8_6uGCUHfjekJziwo0lZ1-l");
+  width:100%;
+  height: 90vh;
+  background-size: 100% 100%;
+
+}
+.logincontainer{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputscontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  
+}

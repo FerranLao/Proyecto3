@@ -67,7 +67,7 @@ export const StyledUserList = styled.ul`
 
   .friend img {
     width: 45px;
-    height: 45showpx;
+    height: 45px;
     border-radius: 30px;
     border: 2px solid #aaa;
     object-fit: cover;

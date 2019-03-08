@@ -40,11 +40,11 @@ class _EventSearch extends React.Component {
   };
 
   filter = ({ target }) => {
-    Events.getpage(target.value, 0).then(({ data }) => {
-      const { events, count } = data;
-      this.setState({ events, count, page: 0 });
-    });
+    new Promise((resolve, reject) => {
+      resolve(this.setState({ filter: target.value }));
+    }).then(e => this.gotopage(0));
   };
+
 
   render() {
     const { user } = this.props;
@@ -54,7 +54,9 @@ class _EventSearch extends React.Component {
       <React.Fragment>
         <div>
           {user.SteamUser ? null : <AddSteam />}
+          <div className="container">
           <Input func={this.filter} />
+          </div>
           {events.length !== 0 ? (
             <React.Fragment>
               <Resultbox gamearray={events} event myevent={pathname} />

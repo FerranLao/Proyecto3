@@ -59,6 +59,20 @@ body{
   flex-direction: column;
   
 }
+.selecthour{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selecthour div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select{
+  margin-top:20px;
+  width: 100%
+}
 .alone img{
   width: 50%
 }

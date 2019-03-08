@@ -3,7 +3,6 @@ import { Input } from "./Input";
 import { Events } from "../lib/Events";
 import { Redirect } from "react-router";
 
-
 export class EventForm extends React.Component {
   constructor() {
     super();
@@ -53,6 +52,7 @@ export class EventForm extends React.Component {
         this.setState({ unsetdate: time, info });
       }
     } else {
+      console.log(e.target.value)
       if (unsetdate) {
         unsetdate.setHours(e.target.value);
         info.date = unsetdate;
@@ -62,6 +62,7 @@ export class EventForm extends React.Component {
         this.setState({ hour: e.target.value });
       }
     }
+    console.log(this.state);
   };
 
   submit = () => {
@@ -74,6 +75,7 @@ export class EventForm extends React.Component {
   render() {
     const { name, description, size } = this.state.info;
     const { created } = this.state;
+    const Arr = new Array(24).fill("")
     return (
       <div className="eventform">
         <h2>Create a party</h2>
@@ -98,12 +100,20 @@ export class EventForm extends React.Component {
               infoname="Choose a date"
             />
           </div>
-          <div>
-            <Input
-              type="number"
-              func={this.handledate}
-              infoname="Choose a hour"
-            />
+          <div className="selecthour">
+         
+            <div className="field">
+              <div className="control">
+                <div className="select is-primary">
+                <label >hour: </label>
+                  <select onChange={(e)=>this.handledate(e)}>
+                    {Arr.map((e,i)=>
+                      <option key={i} value={i}>{i}</option>
+                    )}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div>

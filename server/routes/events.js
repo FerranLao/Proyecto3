@@ -8,6 +8,9 @@ const Chat = require("../models/Chat");
 
 router.post("/new", isLoggedIn(), (req, res, next) => {
   const { name, description, size, private, game, date, time } = req.body;
+  if(date===null||date==NaN){
+    return res.json({message:"incorrect date"})
+  }
   Events.findOne({ name }).then(e => {
     if (e) {
       return res.json({ message: "Name already taken" });

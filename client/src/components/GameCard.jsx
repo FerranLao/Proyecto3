@@ -37,7 +37,7 @@ export const GameCard = ({ game, index = 0, create = false, myevent }) => {
             <p className="movie-card__info">
               {game.party.length}/{game.size}
             </p>
-            <p className="movie-card__info">{date}</p>
+            <p className="movie-card__info">{game.date ? game.date:null}</p>
 
             <Link
               to={`/events/${game._id}`}

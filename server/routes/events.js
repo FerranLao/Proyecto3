@@ -8,8 +8,8 @@ const Chat = require("../models/Chat");
 
 router.post("/new", isLoggedIn(), (req, res, next) => {
   const { name, description, size, private, game, date, time } = req.body;
-  if(date===null||date==NaN){
-    return res.json({message:"incorrect date"})
+  if (date === null || date == NaN) {
+    return res.json({ message: "incorrect date" });
   }
   Events.findOne({ name }).then(e => {
     if (e) {
@@ -115,5 +115,12 @@ router.post("/joinparty", isLoggedIn(), (req, res, next) => {
     });
 });
 
+router.post("/leave", isLoggedIn(), (req, res, next) => {
+  const {id}=req.body
+  const {_id}=req.user
+
+  Events.findByIdAndUpdate(id,{$pull:{party:_id}}).then(e=>res.json("done"))
+  
+});
 
 module.exports = router;

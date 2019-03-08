@@ -98,3 +98,8 @@ body{
   width: 40%;
   
 }
+.exit{
+  position: absolute;
+  right: 7%;
+  top:58.2%
+}

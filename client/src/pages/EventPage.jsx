@@ -69,11 +69,24 @@ class _EventPage extends React.Component {
     }
     return false;
   }
+  exitparty(){
+    const {_id}=this.state.event
+    const {history}=this.props
+    Events.leave(_id).then(e=>{
+      history.push("/")
+    })
+  }
 
   render() {
     const { event, inparty } = this.state;
-    const { game, name, description, creator, party, chat,_id } = event;
-
+    const { game, name, description, creator, party, chat,_id,size } = event;
+    
+    let date = event.date ? event.date.split("T1") : undefined;
+    date = date
+      ? `${date[0]} , ${date[1]
+          .split(".")[0]
+          .substring(0, date[1].split(".")[0].length - 3)}`
+      : null;
     return (
       <div>
         <StyledEventCard>
@@ -84,11 +97,16 @@ class _EventPage extends React.Component {
                 <h1>{name}</h1>
                 <h2>{description}</h2>
                 <p>created by : {creator ? creator.username : null}</p>
+                <p>{date}</p>
+                <p>{`members :${party.length}/${size}`}</p>
               </div>
               <div>
-              <div>
+             
             {inparty ? <InviteFriends event={_id}/>:null}
-          </div>
+            <div className="exit">
+            <button onClick={()=>{this.exitparty()}} className="button is-danger ">Leave the party</button>
+            </div>
+           
               </div>
               <div className="eventbox">
                 <div className="userlist">

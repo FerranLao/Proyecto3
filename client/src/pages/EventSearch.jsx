@@ -51,22 +51,26 @@ class _EventSearch extends React.Component {
     const { events, page, count } = this.state;
     const { pathname } = this.props.location;
     return (
-      <div>
-        {user.SteamUser ? null : <AddSteam />}
-        <Input func={this.filter} />
-        {events.length !== 0 ? (
-          <Resultbox gamearray={events} event myevent={pathname} />
-        ) : (
-          <Nothingfound url="https://media.giphy.com/media/NS7gPxeumewkWDOIxi/giphy.gif">
-            Nothing found
-          </Nothingfound>
-        )}
-        <Pagination
-          func={this.gotopage}
-          pages={Math.ceil(count / 10)}
-          actual={page + 1}
-        />
-      </div>
+      <React.Fragment>
+        <div>
+          {user.SteamUser ? null : <AddSteam />}
+          <Input func={this.filter} />
+          {events.length !== 0 ? (
+            <React.Fragment>
+              <Resultbox gamearray={events} event myevent={pathname} />
+              <Pagination
+                func={this.gotopage}
+                pages={Math.ceil(count / 10)}
+                actual={page + 1}
+              />{" "}
+            </React.Fragment>
+          ) : (
+            <Nothingfound url="https://media.giphy.com/media/NS7gPxeumewkWDOIxi/giphy.gif">
+              Nothing found
+            </Nothingfound>
+          )}
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { regularExp } = require("../bin/helper");
 const { isLoggedIn } = require("../middlewares/IsLogged");
 const User = require("../models/User");
 const Chat = require("../models/Chat");
@@ -78,7 +77,7 @@ router.post("/accept", isLoggedIn(), (req, res, next) => {
           });
       });
     }else{
-      Invitation.findByIdAndDelete(id).then(e=>res.json(e.to))
+      Invitation.findByIdAndDelete(id).then(e=>res.json(e.for))
     }
   });
 });
@@ -97,7 +96,7 @@ router.post("/reject", isLoggedIn(), (req, res, next) => {
         );
       });
     }else{
-      Invitation.findByIdAndDelete(id)
+      Invitation.findByIdAndDelete(id).then(e=>res.json("deleted"))
     }
   });
 });

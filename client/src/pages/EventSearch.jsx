@@ -45,7 +45,6 @@ class _EventSearch extends React.Component {
     }).then(e => this.gotopage(0));
   };
 
-
   render() {
     const { user } = this.props;
     const { events, page, count } = this.state;
@@ -55,7 +54,7 @@ class _EventSearch extends React.Component {
         <div>
           {user.SteamUser ? null : <AddSteam />}
           <div className="container">
-          <Input func={this.filter} />
+            <Input func={this.filter} />
           </div>
           {events.length !== 0 ? (
             <React.Fragment>

@@ -69,24 +69,37 @@ class _EventPage extends React.Component {
     }
     return false;
   }
-  exitparty(){
-    const {_id}=this.state.event
-    const {history}=this.props
-    Events.leave(_id).then(e=>{
-      history.push("/")
-    })
+  exitparty() {
+    const { _id } = this.state.event;
+    const { history } = this.props;
+    Events.leave(_id).then(e => {
+      history.push("/");
+    });
   }
 
   render() {
     const { event, inparty } = this.state;
-    const { game, name, description, creator, party, chat,_id,size } = event;
-    
-    let date = event.date ? event.date.split("T1") : undefined;
-    date = date
-      ? `${date[0]} , ${date[1]
-          .split(".")[0]
-          .substring(0, date[1].split(".")[0].length - 3)}`
-      : null;
+    const {
+      game,
+      name,
+      description,
+      creator,
+      party,
+      chat,
+      _id,
+      size,
+      time
+    } = event;
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    };
+    const date = new Date(time);
+
     return (
       <div>
         <StyledEventCard>
@@ -97,17 +110,24 @@ class _EventPage extends React.Component {
                 <h1>{name}</h1>
                 <h2>{description}</h2>
                 <p>created by : {creator ? creator.username : null}</p>
-                <p>{date}</p>
+                <p>{date.toLocaleDateString("en-US", options)}</p>
                 <p>{`members :${party.length}/${size}`}</p>
               </div>
-              <div>
-             
-            {inparty ? <InviteFriends event={_id}/>:null}
-            <div className="exit">
-            <button onClick={()=>{this.exitparty()}} className="button is-danger ">Leave the party</button>
-            </div>
-           
-              </div>
+              {inparty ? (
+                <div>
+                  <InviteFriends event={_id} />
+                  <div className="exit">
+                    <button
+                      onClick={() => {
+                        this.exitparty();
+                      }}
+                      className="button is-danger "
+                    >
+                      Leave the party
+                    </button>
+                  </div>
+                </div>
+              ) : null}
               <div className="eventbox">
                 <div className="userlist">
                   <StyledUserList>
@@ -127,7 +147,7 @@ class _EventPage extends React.Component {
                   ) : (
                     <button
                       onClick={() => this.join()}
-                      className="button is-success is-active"
+                      className="button is-success is-active join"
                     >
                       Join!
                     </button>

@@ -103,3 +103,19 @@ body{
   right: 7%;
   top:58.2%
 }
+.aboutme{
+  display: flex;
+  flex-direction: row;
+  
+  width: 100%;
+}
+.aboutme img{
+  width: 150%;
+  margin: 0 auto
+
+}
+.join{
+  margin-top:15vh;
+  margin-left: 10%;
+  width: 90%;
+}

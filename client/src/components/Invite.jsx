@@ -11,7 +11,7 @@ export const Invite = ({ invite,accept,reject }) => {
       </div>
       <div className="notification-list__info">
         <h2>{from.username}</h2>
-        <span className="hour">want to {type}</span>
+        <span className="hour">{type ==="Friend"? "want to be your friend":"Invited you to a party"}</span>
         <span className="date" />
 
         <div className="buttons">

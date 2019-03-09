@@ -56,6 +56,7 @@ router.post("/signup", (req, res, next) => {
       image
     })
       .then(user => {
+        req.user=user
         res.json({ user });
       })
       .catch(err => {

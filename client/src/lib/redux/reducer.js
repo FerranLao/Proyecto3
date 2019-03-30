@@ -21,7 +21,6 @@ export const rootReducer = (store = initialStore, action) => {
       store = { ...store, chat: [...store.chat, action.message] };
       break;
     case "GET_CHAT":
-      console.log("dijdj")
       store = { ...store, chat: action.chat };
       break;
     default:

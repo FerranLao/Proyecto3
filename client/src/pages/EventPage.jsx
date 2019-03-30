@@ -80,7 +80,7 @@ class _EventPage extends React.Component {
   render() {
     const { event, inparty } = this.state;
     const {
-      game,
+      game, 
       name,
       description,
       creator,

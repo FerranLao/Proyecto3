@@ -41,11 +41,8 @@ class SignupForm extends React.Component {
       if(e.data.message){
         this.setState({error:e.data.message})
       }else{
-      dispatch({
-        type: "SIGNUP",
-        user: e
-      });
-     history.push("/");}
+   ;
+     history.push("/login");}
     });
   };
 

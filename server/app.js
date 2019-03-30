@@ -89,12 +89,8 @@ app.use(
   })
 );
 
-
-
 app.use(flash());
 require("./passport")(app);
-
-
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
@@ -102,18 +98,17 @@ app.use("/auth", authRoutes);
 const games = require("./routes/games");
 app.use("/games", games);
 
-const events = require("./routes/events")
+const events = require("./routes/events");
 app.use("/events", events);
 
-const chat = require("./routes/chat")
-app.use("/chat", chat)
+const chat = require("./routes/chat");
+app.use("/chat", chat);
 
-const social = require("./routes/social")
-app.use("/social",social)
+const social = require("./routes/social");
+app.use("/social", social);
 
-
-app.use("*", (req,res)=>{
-  res.sendFile(path.join(__dirname,"public/index.html"))
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 module.exports = app;
